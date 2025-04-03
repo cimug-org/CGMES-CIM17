@@ -1,0 +1,233 @@
+@prefix msg:     <http://langdale.com.au/2005/Message#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix uml:     <http://langdale.com.au/2005/UML#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix project:  <http://cimtoole.langdale.com.au/2009/project/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tool:    <http://cimtoole.langdale.com.au/2009/setting#> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+
+project:
+      tool:merge_shadow_extensions
+              "true" ;
+      tool:merged_schema_path
+              "" ;
+      tool:self_heal_on_import
+              "false" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-CoreEquipment.article-rdfs.adoc>
+      tool:plantuml_abstract_classes_color
+              "#D3D3D3" ;
+      tool:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      tool:plantuml_compounds_color
+              "#FFEBCD" ;
+      tool:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      tool:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      tool:plantuml_enable_dark_mode
+              "false" ;
+      tool:plantuml_enable_shadowing
+              "true" ;
+      tool:plantuml_enumerations_color
+              "#90EE90" ;
+      tool:plantuml_errors_color
+              "#FFC0CB" ;
+      tool:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      tool:plantuml_hide_cimdatatypes
+              "true" ;
+      tool:plantuml_hide_compounds
+              "true" ;
+      tool:plantuml_hide_enumerations
+              "true" ;
+      tool:plantuml_hide_primitives
+              "true" ;
+      tool:plantuml_nodesep_horizontal_spacing
+              "" ;
+      tool:plantuml_primitives_color
+              "#E6E6FF" ;
+      tool:plantuml_ranksep_vertical_spacing
+              "" ;
+      tool:plantuml_theme "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-CoreEquipment.inline-rdfs.adoc>
+      tool:plantuml_abstract_classes_color
+              "#D3D3D3" ;
+      tool:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      tool:plantuml_compounds_color
+              "#FFEBCD" ;
+      tool:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      tool:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      tool:plantuml_enable_dark_mode
+              "false" ;
+      tool:plantuml_enable_shadowing
+              "true" ;
+      tool:plantuml_enumerations_color
+              "#90EE90" ;
+      tool:plantuml_errors_color
+              "#FFC0CB" ;
+      tool:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      tool:plantuml_hide_cimdatatypes
+              "true" ;
+      tool:plantuml_hide_compounds
+              "true" ;
+      tool:plantuml_hide_enumerations
+              "true" ;
+      tool:plantuml_hide_primitives
+              "true" ;
+      tool:plantuml_nodesep_horizontal_spacing
+              "" ;
+      tool:plantuml_primitives_color
+              "#E6E6FF" ;
+      tool:plantuml_ranksep_vertical_spacing
+              "" ;
+      tool:plantuml_theme "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-CoreEquipment.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://iec.ch/TC57/2007/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-CoreEquipment.rdfs-2020.rdfs>
+      tool:plantuml_abstract_classes_color
+              "#D3D3D3" ;
+      tool:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      tool:plantuml_compounds_color
+              "#FFEBCD" ;
+      tool:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      tool:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      tool:plantuml_enable_dark_mode
+              "false" ;
+      tool:plantuml_enable_shadowing
+              "true" ;
+      tool:plantuml_enumerations_color
+              "#90EE90" ;
+      tool:plantuml_errors_color
+              "#FFC0CB" ;
+      tool:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      tool:plantuml_hide_cimdatatypes
+              "true" ;
+      tool:plantuml_hide_compounds
+              "true" ;
+      tool:plantuml_hide_enumerations
+              "true" ;
+      tool:plantuml_hide_primitives
+              "true" ;
+      tool:plantuml_nodesep_horizontal_spacing
+              "" ;
+      tool:plantuml_primitives_color
+              "#E6E6FF" ;
+      tool:plantuml_ranksep_vertical_spacing
+              "" ;
+      tool:plantuml_theme "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-CoreEquipment.rdfs-t2b.puml>
+      tool:plantuml_abstract_classes_color
+              "#D3D3D3" ;
+      tool:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      tool:plantuml_compounds_color
+              "#FFEBCD" ;
+      tool:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      tool:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      tool:plantuml_enable_dark_mode
+              "false" ;
+      tool:plantuml_enable_shadowing
+              "true" ;
+      tool:plantuml_enumerations_color
+              "#90EE90" ;
+      tool:plantuml_errors_color
+              "#FFC0CB" ;
+      tool:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      tool:plantuml_hide_cimdatatypes
+              "true" ;
+      tool:plantuml_hide_compounds
+              "true" ;
+      tool:plantuml_hide_enumerations
+              "true" ;
+      tool:plantuml_hide_primitives
+              "true" ;
+      tool:plantuml_nodesep_horizontal_spacing
+              "" ;
+      tool:plantuml_primitives_color
+              "#E6E6FF" ;
+      tool:plantuml_ranksep_vertical_spacing
+              "" ;
+      tool:plantuml_theme "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-DiagramLayout.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://iec.ch/TC57/ns/CIM/DiagramLayout-EU/3.0#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-Dynamics.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://iec.ch/TC57/ns/CIM/Dynamics-EU/1.0#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-EquipmentBoundary.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://iec.ch/TC57/ns/CIM/EquipmentBoundary-EU/3.0#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-GeographicalLocation.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://iec.ch/TC57/ns/CIM/GeographicalLocation-EU/3.0#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-Operation.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://iec.ch/TC57/2007/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-ShortCircuit.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://iec.ch/TC57/2007/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-StateVariables.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-Topology.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CPSM-NA-SteadyStateHypothesis.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Schema/CIM17-2_CGMES31v01_PROF-20v02_NC23v66_MS10v01_DES10v01.eap>
+      tool:merge_shadow_extensions
+              "true" ;
+      tool:schema_namespace
+              "http://iec.ch/TC57/CIM100#" ;
+      tool:self_heal_on_import
+              "false" .

@@ -1,0 +1,23 @@
+:pdf-themesdir: {docdir}
+:pdf-theme: adoc-inline-rdfs
+
+== Dynamics Profile Specification
+
+// Settings:
+:doctype: inline
+:reproducible:
+:icons: font
+:sectnums:
+
+Profile namespace: http://iec.ch/TC57/ns/CIM/Dynamics-EU/1.0#
+
+plantuml::./Profiles/CGMES-Dynamics.rdfs-t2b.puml[format=svg, align=center, caption="Figure 1: ", title="Dynamics Profile"]
+
+== Profile Specification
+
+
+
+
+
+
+

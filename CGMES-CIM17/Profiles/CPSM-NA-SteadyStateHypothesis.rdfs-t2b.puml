@@ -1,0 +1,543 @@
+@startuml
+top to bottom direction
+hide empty methods
+
+
+skinparam BackgroundColor #FFFFFF
+skinparam shadowing false
+skinparam RoundCorner 5
+skinparam BorderColor #454645
+skinparam ArrowColor #454645
+skinparam FontColor #000000
+
+skinparam class {
+  ' Concrete classes style definition
+  BackgroundColor #FFFFE0
+  FontColor #000000
+  AttributeFontColor #000000
+  StereotypeFontColor #000000
+  HeaderFontColor #000000
+  BorderColor #454645
+  BorderThickness 1
+  
+  ' Abstract classes style definition
+  BackgroundColor<<abstract>> #D3D3D3
+  FontColor<<abstract>> #000000
+  AttributeFontColor<<abstract>> #000000
+  StereotypeFontColor<<abstract>> #000000
+  HeaderFontColor<<abstract>> #000000
+  BorderColor<<abstract>> #454645
+  BorderThickness<<abstract>> 1
+  
+  ' Enumerations style definition
+  BackgroundColor<<enumeration>> #90EE90
+  FontColor<<enumeration>> #000000
+  AttributeFontColor<<enumeration>> #000000
+  StereotypeFontColor<<enumeration>> #000000
+  HeaderFontColor <<enumeration>> #000000
+  BorderColor<<enumeration>> #454645
+  BorderThickness<<enumeration>> 1
+  
+  ' CIMDatatypes style definition
+  BackgroundColor<<CIMDatatype>> #FFEBCD
+  FontColor<<CIMDatatype>> #000000
+  AttributeFontColor<<CIMDatatype>> #000000
+  StereotypeFontColor<<CIMDatatype>> #000000
+  HeaderFontColor<<CIMDatatype>> #000000
+  BorderColor<<CIMDatatype>> #454645
+  BorderThickness<<CIMDatatype>> 1
+  
+  ' Compound classes style definition
+  BackgroundColor<<Compound>> #FFEBCD
+  FontColor<<Compound>> #000000
+  AttributeFontColor<<Compound>> #000000
+  StereotypeFontColor<<Compound>> #000000
+  HeaderFontColor<<Compound>> #000000
+  BorderColor<<Compound>> #454645
+  BorderThickness<<Compound>> 1
+  
+  ' Primitive classes style definition
+  BackgroundColor<<Primitive>> #E6E6FF
+  FontColor<<Primitive>> #000000
+  AttributeFontColor<<Primitive>> #000000
+  StereotypeFontColor<<Primitive>> #000000
+  HeaderFontColor<<Primitive>> #000000
+  BorderColor<<Primitive>> #454645
+  BorderThickness<<Primitive>> 1
+  
+  ' Errors classes style definition
+  BackgroundColor<<error>> #FFC0CB
+  FontColor<<error>> #000000
+  AttributeFontColor<<error>> #000000
+  StereotypeFontColor<<error>> #000000
+  HeaderFontColor<<error>> #000000
+  BorderColor<<error>> #454645
+  BorderThickness<<error>> 1
+}
+skinparam shadowing true
+
+hide <<abstract>> stereotype
+hide <<error>> stereotype
+
+
+skinparam note {
+  BorderColor #454645
+  BorderThickness 1.5
+  FontSize 14
+  Font Bold
+  FontColor #000000
+}
+' Add a note towards the upper left corner of the diagram
+note as SteadyStateHypothesisNote #lightyellow
+   Profile: SteadyStateHypothesis
+   Namespace: http://iec.ch/TC57/ns/CIM/SteadyStateHypothesis-EU/3.0#
+end note
+
+' ACDCConverter inherits from ConductingEquipment
+abstract class ACDCConverter  <<abstract>> {
+   +p : ActivePower [1]
+   +q : ReactivePower [1]
+   +targetPpcc : ActivePower [0..1]
+   +targetUdc : Voltage [0..1]
+}
+
+ConductingEquipment <|-- ACDCConverter
+
+' ACDCConverterDCTerminal inherits from DCBaseTerminal
+class ACDCConverterDCTerminal <<Description>>  {
+}
+
+DCBaseTerminal <|-- ACDCConverterDCTerminal
+
+' ACDCTerminal inherits from IdentifiedObject
+abstract class ACDCTerminal  <<abstract>> {
+   +connected : boolean [1]
+}
+
+IdentifiedObject <|-- ACDCTerminal
+
+' ActivePowerLimit inherits from OperationalLimit
+class ActivePowerLimit <<Description>>  {
+   +value : ActivePower [1]
+}
+
+OperationalLimit <|-- ActivePowerLimit
+
+' ApparentPowerLimit inherits from OperationalLimit
+class ApparentPowerLimit <<Description>>  {
+   +value : ApparentPower [1]
+}
+
+OperationalLimit <|-- ApparentPowerLimit
+
+' AsynchronousMachine inherits from RotatingMachine
+class AsynchronousMachine <<Description>>  {
+   +asynchronousMachineType : AsynchronousMachineKind [1]
+}
+
+RotatingMachine <|-- AsynchronousMachine
+
+' BatteryUnit inherits from PowerElectronicsUnit
+class BatteryUnit <<Description>>  {
+   +batteryState : BatteryStateKind [1]
+   +storedE : RealEnergy [1]
+}
+
+PowerElectronicsUnit <|-- BatteryUnit
+
+' Breaker inherits from ProtectedSwitch
+class Breaker <<Description>>  {
+}
+
+ProtectedSwitch <|-- Breaker
+
+' ConductingEquipment inherits from Equipment
+abstract class ConductingEquipment  <<abstract>> {
+}
+
+Equipment <|-- ConductingEquipment
+
+' ConformLoad inherits from EnergyConsumer
+class ConformLoad <<Description>>  {
+}
+
+EnergyConsumer <|-- ConformLoad
+
+' ControlArea inherits from PowerSystemResource
+class ControlArea <<Description>>  {
+   +netInterchange : ActivePower [1]
+   +pTolerance : ActivePower [0..1]
+}
+
+PowerSystemResource <|-- ControlArea
+
+' CsConverter inherits from ACDCConverter
+class CsConverter <<Description>>  {
+   +operatingMode : CsOperatingModeKind [1]
+   +pPccControl : CsPpccControlKind [1]
+   +targetAlpha : AngleDegrees [0..1]
+   +targetGamma : AngleDegrees [0..1]
+   +targetIdc : CurrentFlow [0..1]
+}
+
+ACDCConverter <|-- CsConverter
+
+' CurrentLimit inherits from OperationalLimit
+class CurrentLimit <<Description>>  {
+   +value : CurrentFlow [1]
+}
+
+OperationalLimit <|-- CurrentLimit
+
+' DCBaseTerminal inherits from ACDCTerminal
+abstract class DCBaseTerminal  <<abstract>> {
+}
+
+ACDCTerminal <|-- DCBaseTerminal
+
+' DCTerminal inherits from DCBaseTerminal
+class DCTerminal <<Description>>  {
+}
+
+DCBaseTerminal <|-- DCTerminal
+
+' DisconnectingCircuitBreaker inherits from Breaker
+class DisconnectingCircuitBreaker <<Description>>  {
+}
+
+Breaker <|-- DisconnectingCircuitBreaker
+
+' Disconnector inherits from Switch
+class Disconnector <<Description>>  {
+}
+
+Switch <|-- Disconnector
+
+' EnergyConnection inherits from ConductingEquipment
+abstract class EnergyConnection  <<abstract>> {
+}
+
+ConductingEquipment <|-- EnergyConnection
+
+' EnergyConsumer inherits from EnergyConnection
+class EnergyConsumer <<Description>>  {
+   +p : ActivePower [1]
+   +q : ReactivePower [1]
+}
+
+EnergyConnection <|-- EnergyConsumer
+
+' EnergySource inherits from EnergyConnection
+class EnergySource <<Description>>  {
+   +activePower : ActivePower [1]
+   +reactivePower : ReactivePower [1]
+   +voltageAngle : AngleRadians [0..1]
+   +voltageMagnitude : Voltage [0..1]
+}
+
+EnergyConnection <|-- EnergySource
+
+' Equipment inherits from PowerSystemResource
+abstract class Equipment  <<abstract>> {
+   +inService : boolean [1]
+}
+
+PowerSystemResource <|-- Equipment
+
+' EquipmentContainer
+abstract class EquipmentContainer  <<abstract>> {
+}
+
+
+' EquivalentEquipment inherits from ConductingEquipment
+abstract class EquivalentEquipment  <<abstract>> {
+}
+
+ConductingEquipment <|-- EquivalentEquipment
+
+' EquivalentInjection inherits from EquivalentEquipment
+class EquivalentInjection <<Description>>  {
+   +p : ActivePower [1]
+   +q : ReactivePower [1]
+   +regulationStatus : boolean [0..1]
+   +regulationTarget : Voltage [0..1]
+}
+
+EquivalentEquipment <|-- EquivalentInjection
+
+' ExternalNetworkInjection inherits from RegulatingCondEq
+class ExternalNetworkInjection <<Description>>  {
+   +p : ActivePower [1]
+   +q : ReactivePower [1]
+   +referencePriority : integer [1]
+}
+
+RegulatingCondEq <|-- ExternalNetworkInjection
+
+' Fuse inherits from Switch
+class Fuse <<Description>>  {
+}
+
+Switch <|-- Fuse
+
+' GeneratingUnit inherits from Equipment
+class GeneratingUnit <<Description>>  {
+   +normalPF : float [1]
+}
+
+Equipment <|-- GeneratingUnit
+
+' GroundDisconnector inherits from Switch
+class GroundDisconnector <<Description>>  {
+}
+
+Switch <|-- GroundDisconnector
+
+' HydroGeneratingUnit inherits from GeneratingUnit
+class HydroGeneratingUnit <<Description>>  {
+}
+
+GeneratingUnit <|-- HydroGeneratingUnit
+
+' IdentifiedObject
+abstract class IdentifiedObject  <<abstract>> {
+   +mRID : string [1]
+}
+
+
+' Jumper inherits from Switch
+class Jumper <<Description>>  {
+}
+
+Switch <|-- Jumper
+
+' LinearShuntCompensator inherits from ShuntCompensator
+class LinearShuntCompensator <<Description>>  {
+}
+
+ShuntCompensator <|-- LinearShuntCompensator
+
+' LoadBreakSwitch inherits from ProtectedSwitch
+class LoadBreakSwitch <<Description>>  {
+}
+
+ProtectedSwitch <|-- LoadBreakSwitch
+
+' NonConformLoad inherits from EnergyConsumer
+class NonConformLoad <<Description>>  {
+}
+
+EnergyConsumer <|-- NonConformLoad
+
+' NonlinearShuntCompensator inherits from ShuntCompensator
+class NonlinearShuntCompensator <<Description>>  {
+}
+
+ShuntCompensator <|-- NonlinearShuntCompensator
+
+' NuclearGeneratingUnit inherits from GeneratingUnit
+class NuclearGeneratingUnit <<Description>>  {
+}
+
+GeneratingUnit <|-- NuclearGeneratingUnit
+
+' OperationalLimit inherits from IdentifiedObject
+abstract class OperationalLimit  <<abstract>> {
+}
+
+IdentifiedObject <|-- OperationalLimit
+
+' PhaseTapChanger inherits from TapChanger
+abstract class PhaseTapChanger  <<abstract>> {
+}
+
+TapChanger <|-- PhaseTapChanger
+
+' PhaseTapChangerAsymmetrical inherits from PhaseTapChangerNonLinear
+class PhaseTapChangerAsymmetrical <<Description>>  {
+}
+
+PhaseTapChangerNonLinear <|-- PhaseTapChangerAsymmetrical
+
+' PhaseTapChangerLinear inherits from PhaseTapChanger
+class PhaseTapChangerLinear <<Description>>  {
+}
+
+PhaseTapChanger <|-- PhaseTapChangerLinear
+
+' PhaseTapChangerNonLinear inherits from PhaseTapChanger
+abstract class PhaseTapChangerNonLinear  <<abstract>> {
+}
+
+PhaseTapChanger <|-- PhaseTapChangerNonLinear
+
+' PhaseTapChangerSymmetrical inherits from PhaseTapChangerNonLinear
+class PhaseTapChangerSymmetrical <<Description>>  {
+}
+
+PhaseTapChangerNonLinear <|-- PhaseTapChangerSymmetrical
+
+' PhaseTapChangerTabular inherits from PhaseTapChanger
+class PhaseTapChangerTabular <<Description>>  {
+}
+
+PhaseTapChanger <|-- PhaseTapChangerTabular
+
+' PowerElectronicsConnection inherits from RegulatingCondEq
+class PowerElectronicsConnection <<Description>>  {
+   +p : ActivePower [1]
+   +q : ReactivePower [1]
+}
+
+RegulatingCondEq <|-- PowerElectronicsConnection
+
+' PowerElectronicsUnit inherits from Equipment
+abstract class PowerElectronicsUnit  <<abstract>> {
+}
+
+Equipment <|-- PowerElectronicsUnit
+
+' PowerSystemResource inherits from IdentifiedObject
+abstract class PowerSystemResource  <<abstract>> {
+}
+
+IdentifiedObject <|-- PowerSystemResource
+
+' ProtectedSwitch inherits from Switch
+abstract class ProtectedSwitch  <<abstract>> {
+}
+
+Switch <|-- ProtectedSwitch
+
+' RatioTapChanger inherits from TapChanger
+class RatioTapChanger <<Description>>  {
+}
+
+TapChanger <|-- RatioTapChanger
+
+' RegulatingCondEq inherits from EnergyConnection
+class RegulatingCondEq <<Description>>  {
+   +controlEnabled : boolean [1]
+}
+
+EnergyConnection <|-- RegulatingCondEq
+
+' RegulatingControl inherits from PowerSystemResource
+class RegulatingControl <<Description>>  {
+   +discrete : boolean [1]
+   +enabled : boolean [1]
+   +maxAllowedTargetValue : float [0..1]
+   +minAllowedTargetValue : float [0..1]
+   +targetDeadband : float [0..1]
+   +targetValue : float [1]
+   +targetValueUnitMultiplier : UnitMultiplier [1]
+}
+
+PowerSystemResource <|-- RegulatingControl
+
+' RotatingMachine inherits from RegulatingCondEq
+abstract class RotatingMachine  <<abstract>> {
+   +p : ActivePower [1]
+   +q : ReactivePower [1]
+}
+
+RegulatingCondEq <|-- RotatingMachine
+
+' ShuntCompensator inherits from RegulatingCondEq
+abstract class ShuntCompensator  <<abstract>> {
+   +sections : float [1]
+}
+
+RegulatingCondEq <|-- ShuntCompensator
+
+' SolarGeneratingUnit inherits from GeneratingUnit
+class SolarGeneratingUnit <<Description>>  {
+}
+
+GeneratingUnit <|-- SolarGeneratingUnit
+
+' StaticVarCompensator inherits from RegulatingCondEq
+class StaticVarCompensator <<Description>>  {
+   +q : ReactivePower [1]
+}
+
+RegulatingCondEq <|-- StaticVarCompensator
+
+' StationSupply inherits from EnergyConsumer
+class StationSupply <<Description>>  {
+}
+
+EnergyConsumer <|-- StationSupply
+
+' Switch inherits from ConductingEquipment
+class Switch <<Description>>  {
+   +locked : boolean [1]
+   +open : boolean [1]
+}
+
+ConductingEquipment <|-- Switch
+
+' SynchronousMachine inherits from RotatingMachine
+class SynchronousMachine <<Description>>  {
+   +operatingMode : SynchronousMachineOperatingMode [1]
+   +referencePriority : integer [1]
+}
+
+RotatingMachine <|-- SynchronousMachine
+
+' TapChanger inherits from PowerSystemResource
+abstract class TapChanger  <<abstract>> {
+   +controlEnabled : boolean [1]
+   +step : float [1]
+}
+
+PowerSystemResource <|-- TapChanger
+
+' TapChangerControl inherits from RegulatingControl
+class TapChangerControl <<Description>>  {
+}
+
+RegulatingControl <|-- TapChangerControl
+
+' Terminal inherits from ACDCTerminal
+class Terminal <<Description>>  {
+}
+
+ACDCTerminal <|-- Terminal
+
+' ThermalGeneratingUnit inherits from GeneratingUnit
+class ThermalGeneratingUnit <<Description>>  {
+}
+
+GeneratingUnit <|-- ThermalGeneratingUnit
+
+' VoltageLimit inherits from OperationalLimit
+class VoltageLimit <<Description>>  {
+   +value : Voltage [1]
+}
+
+OperationalLimit <|-- VoltageLimit
+
+' VsConverter inherits from ACDCConverter
+class VsConverter <<Description>>  {
+   +droop : PU [0..1]
+   +droopCompensation : Resistance [0..1]
+   +pPccControl : VsPpccControlKind [1]
+   +qPccControl : VsQpccControlKind [1]
+   +qShare : PerCent [0..1]
+   +targetPhasePcc : AngleDegrees [0..1]
+   +targetPowerFactorPcc : float [0..1]
+   +targetPWMfactor : float [0..1]
+   +targetQpcc : ReactivePower [0..1]
+   +targetUpcc : Voltage [0..1]
+}
+
+ACDCConverter <|-- VsConverter
+
+' WindGeneratingUnit inherits from GeneratingUnit
+class WindGeneratingUnit <<Description>>  {
+}
+
+GeneratingUnit <|-- WindGeneratingUnit
+
+@enduml

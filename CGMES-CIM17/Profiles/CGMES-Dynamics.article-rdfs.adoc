@@ -1,0 +1,31 @@
+:pdf-themesdir: {docdir}
+:pdf-theme: adoc-article-rdfs
+
+= Dynamics Profile
+
+// Settings:
+:doctype: article
+:reproducible:
+:icons: font
+:sectnums:
+:sectnumlevels: 4
+:xrefstyle: short
+:toclevels: 4
+:toc-title: Table of Contents
+:toc:
+:toc-placement: preamble
+
+== Overview
+
+Profile namespace: http://iec.ch/TC57/ns/CIM/Dynamics-EU/1.0#
+
+plantuml::./Profiles/CGMES-Dynamics.rdfs-t2b.puml[format=svg, align=center, caption="Figure 1: ", title="Dynamics Profile"]
+
+== Profile Specification
+
+
+
+
+
+
+

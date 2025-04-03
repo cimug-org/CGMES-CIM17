@@ -1,0 +1,503 @@
+:pdf-themesdir: {docdir}
+:pdf-theme: adoc-inline-rdfs
+
+== Topology Profile Specification
+
+// Settings:
+:doctype: inline
+:reproducible:
+:icons: font
+:sectnums:
+
+Profile namespace: http://iec.ch/TC57/ns/CIM/Topology-EU/3.0#
+
+plantuml::./Profiles/CGMES-Topology.rdfs-t2b.puml[format=svg, align=center, caption="Figure 1: ", title="Topology Profile"]
+
+== Profile Specification
+
+
+
+
+=== Concrete Classes
+
+[#ACDCConverterDCTerminal]
+==== (Description) ACDCConverterDCTerminal
+
+Inheritance path = <<DCBaseTerminal,DCBaseTerminal>> => <<ACDCTerminal,ACDCTerminal>> => <<IdentifiedObject,IdentifiedObject>>
+
+A DC electrical connection point at the AC/DC converter. The AC/DC converter is electrically connected also to the AC side. The AC connection is inherited from the AC conducting equipment in the same way as any other AC equipment. The AC/DC converter DC terminal is separate from generic DC terminal to restrict the connection with the AC side to AC/DC converter and so that no other DC conducting equipment can be connected to the AC side.
+
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|DCTopologicalNode
+|1..1
+|<<DCTopologicalNode,DCTopologicalNode>>
+|see <<DCBaseTerminal,DCBaseTerminal>>
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|description
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#ConnectivityNode]
+==== (Description) ConnectivityNode
+
+
+Connectivity nodes are points where terminals of AC conducting equipment are connected together with zero impedance.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|TopologicalNode
+|1..1
+|<<TopologicalNode,TopologicalNode>>
+|
+The topological node to which this connectivity node is assigned. May depend on the current state of switches in the network.
+
+|===
+
+[#DCNode]
+==== (Description) DCNode
+
+Inheritance path = <<IdentifiedObject,IdentifiedObject>>
+
+DC nodes are points where terminals of DC conducting equipment are connected together with zero impedance.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|DCTopologicalNode
+|1..1
+|<<DCTopologicalNode,DCTopologicalNode>>
+|
+The DC topological node to which this DC connectivity node is assigned. May depend on the current state of switches in the network.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|description
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#DCTerminal]
+==== (Description) DCTerminal
+
+Inheritance path = <<DCBaseTerminal,DCBaseTerminal>> => <<ACDCTerminal,ACDCTerminal>> => <<IdentifiedObject,IdentifiedObject>>
+
+An electrical connection point to generic DC conducting equipment.
+
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|DCTopologicalNode
+|1..1
+|<<DCTopologicalNode,DCTopologicalNode>>
+|see <<DCBaseTerminal,DCBaseTerminal>>
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|description
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#DCTopologicalNode]
+==== DCTopologicalNode
+
+Inheritance path = <<IdentifiedObject,IdentifiedObject>>
+
+DC bus.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|DCEquipmentContainer
+|1..1
+|<<DCEquipmentContainer,DCEquipmentContainer>>
+|
+The connectivity node container to which the topological node belongs.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|description
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#Terminal]
+==== (Description) Terminal
+
+Inheritance path = <<ACDCTerminal,ACDCTerminal>> => <<IdentifiedObject,IdentifiedObject>>
+
+An AC electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|TopologicalNode
+|0..1
+|<<TopologicalNode,TopologicalNode>>
+|
+The topological node associated with the terminal. This can be used as an alternative to the connectivity node path to topological node, thus making it unnecessary to model connectivity nodes in some cases. Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|description
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#TopologicalNode]
+==== TopologicalNode
+
+Inheritance path = <<IdentifiedObject,IdentifiedObject>>
+
+For a detailed substation model a topological node is a set of connectivity nodes that, in the current network state, are connected together through any type of closed switches, including jumpers. Topological nodes change as the current network state changes (i.e., switches, breakers, etc. change state).
+
+For a planning model, switch statuses are not used to form topological nodes. Instead they are manually created or deleted in a model builder tool. Topological nodes maintained this way are also called "busses".
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|BaseVoltage
+|1..1
+|<<BaseVoltage,BaseVoltage>>
+|
+The base voltage of the topological node.
+
+
+|ConnectivityNodeContainer
+|1..1
+|<<ConnectivityNodeContainer,ConnectivityNodeContainer>>
+|
+The connectivity node container to which the topological node belongs.
+
+
+|ReportingGroup
+|0..1
+|<<ReportingGroup,ReportingGroup>>
+|
+The reporting group to which the topological node belongs.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|description
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+
+=== Abstract Classes
+
+[#ACDCTerminal]
+==== ACDCTerminal
+
+Inheritance path = <<IdentifiedObject,IdentifiedObject>>
+
+An electrical connection point (AC or DC) to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.
+
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|description
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#BaseVoltage]
+==== BaseVoltage
+
+
+Defines a system base voltage which is referenced.
+
+
+This abstract class is a placeholder for 'By Reference' associations defined within this profile. Such classes have no attributes or associations defined. Rather, 'By Reference' associations of this type reference a corresponding concrete type in external profiles that this one is dependent upon.
+
+[#ConnectivityNodeContainer]
+==== ConnectivityNodeContainer
+
+
+A base class for all objects that may contain connectivity nodes or topological nodes.
+
+
+This abstract class is a placeholder for 'By Reference' associations defined within this profile. Such classes have no attributes or associations defined. Rather, 'By Reference' associations of this type reference a corresponding concrete type in external profiles that this one is dependent upon.
+
+[#DCBaseTerminal]
+==== DCBaseTerminal
+
+Inheritance path = <<ACDCTerminal,ACDCTerminal>> => <<IdentifiedObject,IdentifiedObject>>
+
+An electrical connection point at a piece of DC conducting equipment. DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model requires that DC connections are distinct from AC connections.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|DCTopologicalNode
+|1..1
+|<<DCTopologicalNode,DCTopologicalNode>>
+|
+See association end Terminal.TopologicalNode.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|description
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#DCEquipmentContainer]
+==== DCEquipmentContainer
+
+
+A modelling construct to provide a root class for containment of DC as well as AC equipment. The class differ from the EquipmentContaner for AC in that it may also contain DCNode-s. Hence it can contain both AC and DC equipment.
+
+
+This abstract class is a placeholder for 'By Reference' associations defined within this profile. Such classes have no attributes or associations defined. Rather, 'By Reference' associations of this type reference a corresponding concrete type in external profiles that this one is dependent upon.
+
+[#IdentifiedObject]
+==== IdentifiedObject
+
+
+This is a root class to provide common identification for all classes needing identification and naming attributes.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|mRID
+|1..1
+|<<String,String>>
+|
+Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+
+|description
+|0..1
+|<<String,String>>
+|
+The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+
+|name
+|0..1
+|<<String,String>>
+|
+The name is any free human readable and possibly non unique text naming the object.
+
+|===
+
+[#ReportingGroup]
+==== ReportingGroup
+
+Inheritance path = <<IdentifiedObject,IdentifiedObject>>
+
+A reporting group is used for various ad-hoc groupings used for reporting.
+
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|description
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|0..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+
+
+
+
+=== Primitive Types
+
+[#CGMES-Topology-String]
+==== String
+
+A string consisting of a sequence of characters. The character encoding is UTF-8. The string length is unspecified and unlimited.
+
+
+XSD type: string
+

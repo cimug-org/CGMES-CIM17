@@ -1,0 +1,1614 @@
+:pdf-themesdir: {docdir}
+:pdf-theme: adoc-inline-rdfs
+
+== StateVariables Profile Specification
+
+// Settings:
+:doctype: inline
+:reproducible:
+:icons: font
+:sectnums:
+
+Profile namespace: http://iec.ch/TC57/ns/CIM/StateVariables-EU/3.0#
+
+plantuml::./Profiles/CGMES-StateVariables.rdfs-t2b.puml[format=svg, align=center, caption="Figure 1: ", title="StateVariables Profile"]
+
+== Profile Specification
+
+
+
+
+=== Concrete Classes
+
+[#CsConverter]
+==== (Description) CsConverter
+
+Inheritance path = <<ACDCConverter,ACDCConverter>> => <<ConductingEquipment,ConductingEquipment>>
+
+DC side of the current source converter (CSC).
+
+The firing angle controls the dc voltage at the converter, both for rectifier and inverter. The difference between the dc voltages of the rectifier and inverter determines the dc current. The extinction angle is used to limit the dc voltage at the inverter, if needed, and is not used in active power control. The firing angle, transformer tap position and number of connected filters are the primary means to control a current source dc line. Higher level controls are built on top, e.g. dc voltage, dc current and active power. From a steady state perspective it is sufficient to specify the wanted active power transfer (ACDCConverter.targetPpcc) and the control functions will set the dc voltage, dc current, firing angle, transformer tap position and number of connected filters to meet this. Therefore attributes targetAlpha and targetGamma are not applicable in this case.
+
+The reactive power consumed by the converter is a function of the firing angle, transformer tap position and number of connected filter, which can be approximated with half of the active power. The losses is a function of the dc voltage and dc current.
+
+The attributes minAlpha and maxAlpha define the range of firing angles for rectifier operation between which no discrete tap changer action takes place. The range is typically 10-18 degrees.
+
+The attributes minGamma and maxGamma define the range of extinction angles for inverter operation between which no discrete tap changer action takes place. The range is typically 17-20 degrees.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|alpha
+|1..1
+|<<AngleDegrees,AngleDegrees>>
+|
+Firing angle that determines the dc voltage at the converter dc terminal. Typical value between 10 degrees and 18 degrees for a rectifier. It is converters state variable, result from power flow. The attribute shall be a positive value.
+
+
+|gamma
+|1..1
+|<<AngleDegrees,AngleDegrees>>
+|
+Extinction angle. It is used to limit the dc voltage at the inverter if needed. Typical value between 17 degrees and 20 degrees for an inverter. It is converters state variable, result from power flow. The attribute shall be a positive value.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|idc
+|1..1
+|<<CurrentFlow,CurrentFlow>>
+|see <<ACDCConverter,ACDCConverter>>
+
+|poleLossP
+|1..1
+|<<ActivePower,ActivePower>>
+|see <<ACDCConverter,ACDCConverter>>
+
+|uc
+|1..1
+|<<Voltage,Voltage>>
+|see <<ACDCConverter,ACDCConverter>>
+
+|udc
+|1..1
+|<<Voltage,Voltage>>
+|see <<ACDCConverter,ACDCConverter>>
+|===
+
+[#DCTopologicalIsland]
+==== DCTopologicalIsland
+
+Inheritance path = <<IdentifiedObject,IdentifiedObject>>
+
+An electrically connected subset of the network. DC topological islands can change as the current network state changes, e.g. due to:
+
+- disconnect switches or breakers changing state in a SCADA/EMS.
+
+- manual creation, change or deletion of topological nodes in a planning tool.
+
+Only energised TopologicalNode-s shall be part of the topological island.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|DCTopologicalNodes (AggregateOf)
+|1..*
+|<<DCTopologicalNode,DCTopologicalNode>>
+|
+The DC topological nodes in a DC topological island.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#SvInjection]
+==== SvInjection
+
+
+The SvInjection reports the calculated bus injection minus the sum of the terminal flows. The terminal flow is positive out from the bus (load sign convention) and bus injection has positive flow into the bus. SvInjection may have the remainder after state estimation or slack after power flow calculation.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|pInjection
+|1..1
+|<<ActivePower,ActivePower>>
+|
+The active power mismatch between calculated injection and initial injection. Positive sign means injection into the TopologicalNode (bus).
+
+
+|qInjection
+|0..1
+|<<ReactivePower,ReactivePower>>
+|
+The reactive power mismatch between calculated injection and initial injection. Positive sign means injection into the TopologicalNode (bus).
+
+
+|TopologicalNode
+|1..1
+|<<TopologicalNode,TopologicalNode>>
+|
+The topological node associated with the flow injection state variable.
+
+|===
+
+[#SvPowerFlow]
+==== SvPowerFlow
+
+
+State variable for power flow. Load convention is used for flow direction. This means flow out from the TopologicalNode into the equipment is positive.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|p
+|1..1
+|<<ActivePower,ActivePower>>
+|
+The active power flow. Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+
+
+|q
+|1..1
+|<<ReactivePower,ReactivePower>>
+|
+The reactive power flow. Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+
+
+|Terminal
+|1..1
+|<<Terminal,Terminal>>
+|
+The terminal associated with the power flow state variable.
+
+|===
+
+[#SvShuntCompensatorSections]
+==== SvShuntCompensatorSections
+
+
+State variable for the number of sections in service for a shunt compensator.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|sections
+|1..1
+|<<Float,Float>>
+|
+The number of sections in service as a continuous variable. The attribute shall be a positive value or zero. To get integer value scale with ShuntCompensator.bPerSection.
+
+
+|ShuntCompensator
+|1..1
+|<<ShuntCompensator,ShuntCompensator>>
+|
+The shunt compensator for which the state applies.
+
+|===
+
+[#SvStatus]
+==== SvStatus
+
+
+State variable for status.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|inService
+|1..1
+|<<Boolean,Boolean>>
+|
+The in service status as a result of topology processing. It indicates if the equipment is considered as energized by the power flow. It reflects if the equipment is connected within a solvable island. It does not necessarily reflect whether or not the island was solved by the power flow.
+
+
+|ConductingEquipment
+|1..1
+|<<ConductingEquipment,ConductingEquipment>>
+|
+The conducting equipment associated with the status state variable.
+
+|===
+
+[#SvSwitch]
+==== SvSwitch
+
+
+State variable for switch.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|open
+|1..1
+|<<Boolean,Boolean>>
+|
+The attribute tells if the computed state of the switch is considered open.
+
+
+|Switch
+|1..1
+|<<Switch,Switch>>
+|
+The switch associated with the switch state.
+
+|===
+
+[#SvTapStep]
+==== SvTapStep
+
+
+State variable for transformer tap step.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|position
+|1..1
+|<<Float,Float>>
+|
+The floating point tap position. This is not the tap ratio, but rather the tap step position as defined by the related tap changer model and normally is constrained to be within the range of minimum and maximum tap positions.
+
+
+|TapChanger
+|1..1
+|<<TapChanger,TapChanger>>
+|
+The tap changer associated with the tap step state.
+
+|===
+
+[#SvVoltage]
+==== SvVoltage
+
+
+State variable for voltage.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|angle
+|1..1
+|<<AngleDegrees,AngleDegrees>>
+|
+The voltage angle of the topological node complex voltage with respect to system reference.
+
+
+|v
+|1..1
+|<<Voltage,Voltage>>
+|
+The voltage magnitude at the topological node. The attribute shall be a positive value.
+
+
+|TopologicalNode
+|1..1
+|<<TopologicalNode,TopologicalNode>>
+|
+The topological node associated with the voltage state.
+
+|===
+
+[#TopologicalIsland]
+==== TopologicalIsland
+
+Inheritance path = <<IdentifiedObject,IdentifiedObject>>
+
+An electrically connected subset of the network. Topological islands can change as the current network state changes, e.g. due to:
+
+- disconnect switches or breakers changing state in a SCADA/EMS.
+
+- manual creation, change or deletion of topological nodes in a planning tool.
+
+Only energised TopologicalNode-s shall be part of the topological island.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|AngleRefTopologicalNode
+|1..1
+|<<TopologicalNode,TopologicalNode>>
+|
+The angle reference for the island. Normally there is one TopologicalNode that is selected as the angle reference for each island. Other reference schemes exist, so the association is typically optional.
+
+
+|TopologicalNodes (AggregateOf)
+|1..*
+|<<TopologicalNode,TopologicalNode>>
+|
+A topological node belongs to a topological island.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#VsConverter]
+==== (Description) VsConverter
+
+Inheritance path = <<ACDCConverter,ACDCConverter>> => <<ConductingEquipment,ConductingEquipment>>
+
+DC side of the voltage source converter (VSC).
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|delta
+|1..1
+|<<AngleDegrees,AngleDegrees>>
+|
+Angle between VsConverter.uv and ACDCConverter.uc. It is converters state variable used in power flow. The attribute shall be a positive value or zero.
+
+
+|uv
+|1..1
+|<<Voltage,Voltage>>
+|
+Line-to-line voltage on the valve side of the converter transformer. It is converters state variable, result from power flow. The attribute shall be a positive value.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|idc
+|1..1
+|<<CurrentFlow,CurrentFlow>>
+|see <<ACDCConverter,ACDCConverter>>
+
+|poleLossP
+|1..1
+|<<ActivePower,ActivePower>>
+|see <<ACDCConverter,ACDCConverter>>
+
+|uc
+|1..1
+|<<Voltage,Voltage>>
+|see <<ACDCConverter,ACDCConverter>>
+
+|udc
+|1..1
+|<<Voltage,Voltage>>
+|see <<ACDCConverter,ACDCConverter>>
+|===
+
+
+=== Abstract Classes
+
+[#ACDCConverter]
+==== ACDCConverter
+
+Inheritance path = <<ConductingEquipment,ConductingEquipment>>
+
+A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|idc
+|1..1
+|<<CurrentFlow,CurrentFlow>>
+|
+Converter DC current, also called Id. It is converters state variable, result from power flow.
+
+
+|poleLossP
+|1..1
+|<<ActivePower,ActivePower>>
+|
+The active power loss at a DC Pole
+
+= idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc^2.
+
+For lossless operation Pdc=Pac.
+
+For rectifier operation with losses Pdc=Pac-lossP.
+
+For inverter operation with losses Pdc=Pac+lossP.
+
+It is converters state variable used in power flow. The attribute shall be a positive value.
+
+
+|uc
+|1..1
+|<<Voltage,Voltage>>
+|
+Line-to-line converter voltage, the voltage at the AC side of the valve. It is converters state variable, result from power flow. The attribute shall be a positive value.
+
+
+|udc
+|1..1
+|<<Voltage,Voltage>>
+|
+Converter voltage at the DC side, also called Ud. It is converters state variable, result from power flow. The attribute shall be a positive value.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|===
+
+[#ACDCTerminal]
+==== ACDCTerminal
+
+Inheritance path = <<IdentifiedObject,IdentifiedObject>>
+
+An electrical connection point (AC or DC) to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.
+
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#ConductingEquipment]
+==== ConductingEquipment
+
+
+The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.
+
+
+This abstract class is a placeholder for 'By Reference' associations defined within this profile. Such classes have no attributes or associations defined. Rather, 'By Reference' associations of this type reference a corresponding concrete type in external profiles that this one is dependent upon.
+
+[#DCTopologicalNode]
+==== DCTopologicalNode
+
+Inheritance path = <<IdentifiedObject,IdentifiedObject>>
+
+DC bus.
+
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#IdentifiedObject]
+==== IdentifiedObject
+
+
+This is a root class to provide common identification for all classes needing identification and naming attributes.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|mRID
+|1..1
+|<<String,String>>
+|
+Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+
+|name
+|1..1
+|<<String,String>>
+|
+The name is any free human readable and possibly non unique text naming the object.
+
+|===
+
+[#ShuntCompensator]
+==== ShuntCompensator
+
+
+A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors. A section of a shunt compensator is an individual capacitor or reactor. A negative value for bPerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device. Ground is implied.
+
+
+This abstract class is a placeholder for 'By Reference' associations defined within this profile. Such classes have no attributes or associations defined. Rather, 'By Reference' associations of this type reference a corresponding concrete type in external profiles that this one is dependent upon.
+
+[#Switch]
+==== Switch
+
+Inheritance path = <<ConductingEquipment,ConductingEquipment>>
+
+A generic device designed to close, or open, or both, one or more electric circuits. All switches are two terminal devices including grounding switches. The ACDCTerminal.connected at the two sides of the switch shall not be considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen and .locked are relevant.
+
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+|===
+
+[#TapChanger]
+==== TapChanger
+
+
+Mechanism for changing transformer winding tap positions.
+
+
+This abstract class is a placeholder for 'By Reference' associations defined within this profile. Such classes have no attributes or associations defined. Rather, 'By Reference' associations of this type reference a corresponding concrete type in external profiles that this one is dependent upon.
+
+[#Terminal]
+==== Terminal
+
+Inheritance path = <<ACDCTerminal,ACDCTerminal>> => <<IdentifiedObject,IdentifiedObject>>
+
+An AC electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.
+
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%"]
+|===
+|name |mult |type |description
+
+
+|mRID
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+
+|name
+|1..1
+|string
+|see <<IdentifiedObject,IdentifiedObject>>
+|===
+
+[#TopologicalNode]
+==== TopologicalNode
+
+
+For a detailed substation model a topological node is a set of connectivity nodes that, in the current network state, are connected together through any type of closed switches, including jumpers. Topological nodes change as the current network state changes (i.e., switches, breakers, etc. change state).
+
+For a planning model, switch statuses are not used to form topological nodes. Instead they are manually created or deleted in a model builder tool. Topological nodes maintained this way are also called "busses".
+
+
+This abstract class is a placeholder for 'By Reference' associations defined within this profile. Such classes have no attributes or associations defined. Rather, 'By Reference' associations of this type reference a corresponding concrete type in external profiles that this one is dependent upon.
+
+
+
+=== Enumerations
+
+[#UnitMultiplier]
+==== UnitMultiplier
+
+The unit multipliers defined for the CIM. When applied to unit symbols, the unit symbol is treated as a derived unit. Regardless of the contents of the unit symbol text, the unit symbol shall be treated as if it were a single-character unit symbol. Unit symbols should not contain multipliers, and it should be left to the multiplier to define the multiple for an entire data type.
+
+For example, if a unit symbol is "m2Pers" and the multiplier is "k", then the value is k(m**2/s), and the multiplier applies to the entire final value, not to any individual part of the value. This can be conceptualized by substituting a derived unit symbol for the unit type. If one imagines that the symbol "" represents the derived unit "m2Pers", then applying the multiplier "k" can be conceptualized simply as "k".
+
+For example, the SI unit for mass is "kg" and not "g". If the unit symbol is defined as "kg", then the multiplier is applied to "kg" as a whole and does not replace the "k" in front of the "g". In this case, the multiplier of "m" would be used with the unit symbol of "kg" to represent one gram. As a text string, this violates the instructions in IEC 80000-1. However, because the unit symbol in CIM is treated as a derived unit instead of as an SI unit, it makes more sense to conceptualize the "kg" as if it were replaced by one of the proposed replacements for the SI mass symbol. If one imagines that the "kg" were replaced by a symbol "", then it is easier to conceptualize the multiplier "m" as creating the proper unit "m", and not the forbidden unit "mkg".
+
+
+[%header,width="100%",cols="25%,75%"]
+|===
+|name |description
+
+|E
+|
+Exa 10**18.
+
+
+|G
+|
+Giga 10**9.
+
+
+|M
+|
+Mega 10**6.
+
+
+|P
+|
+Peta 10**15.
+
+
+|T
+|
+Tera 10**12.
+
+
+|Y
+|
+Yotta 10**24.
+
+
+|Z
+|
+Zetta 10**21.
+
+
+|a
+|
+Atto 10**-18.
+
+
+|c
+|
+Centi 10**-2.
+
+
+|d
+|
+Deci 10**-1.
+
+
+|da
+|
+Deca 10**1.
+
+
+|f
+|
+Femto 10**-15.
+
+
+|h
+|
+Hecto 10**2.
+
+
+|k
+|
+Kilo 10**3.
+
+
+|m
+|
+Milli 10**-3.
+
+
+|micro
+|
+Micro 10**-6.
+
+
+|n
+|
+Nano 10**-9.
+
+
+|none
+|
+No multiplier or equivalently multiply by 1.
+
+
+|p
+|
+Pico 10**-12.
+
+
+|y
+|
+Yocto 10**-24.
+
+
+|z
+|
+Zepto 10**-21.
+
+|===
+[#UnitSymbol]
+==== UnitSymbol
+
+The derived units defined for usage in the CIM. In some cases, the derived unit is equal to an SI unit. Whenever possible, the standard derived symbol is used instead of the formula for the derived unit. For example, the unit symbol Farad is defined as "F" instead of "CPerV". In cases where a standard symbol does not exist for a derived unit, the formula for the unit is used as the unit symbol. For example, density does not have a standard symbol and so it is represented as "kgPerm3". With the exception of the "kg", which is an SI unit, the unit symbols do not contain multipliers and therefore represent the base derived unit to which a multiplier can be applied as a whole.
+
+Every unit symbol is treated as an unparseable text as if it were a single-letter symbol. The meaning of each unit symbol is defined by the accompanying descriptive text and not by the text contents of the unit symbol.
+
+To allow the widest possible range of serializations without requiring special character handling, several substitutions are made which deviate from the format described in IEC 80000-1. The division symbol "/" is replaced by the letters "Per". Exponents are written in plain text after the unit as "m3" instead of being formatted as "m" with a superscript of 3 or introducing a symbol as in "m^3". The degree symbol "" is replaced with the letters "deg". Any clarification of the meaning for a substitution is included in the description for the unit symbol.
+
+Non-SI units are included in list of unit symbols to allow sources of data to be correctly labelled with their non-SI units (for example, a GPS sensor that is reporting numbers that represent feet instead of meters). This allows software to use the unit symbol information correctly convert and scale the raw data of those sources into SI-based units.
+
+The integer values are used for harmonization with IEC 61850.
+
+
+[%header,width="100%",cols="25%,75%"]
+|===
+|name |description
+
+|A
+|
+Current in amperes.
+
+
+|A2
+|
+Amperes squared (A).
+
+
+|A2h
+|
+Ampere-squared hour, ampere-squared hour.
+
+
+|A2s
+|
+Ampere squared time in square amperes (As).
+
+
+|APerA
+|
+Current, ratio of amperages. Note: Users may need to supply a prefix such as m to show rates such as mA/A.
+
+
+|APerm
+|
+A/m, magnetic field strength, amperes per metre.
+
+
+|Ah
+|
+Ampere-hours, ampere-hours.
+
+
+|As
+|
+Ampere seconds (As).
+
+
+|Bq
+|
+Radioactivity in becquerels (1/s).
+
+
+|Btu
+|
+Energy, British Thermal Units.
+
+
+|C
+|
+Electric charge in coulombs (As).
+
+
+|CPerkg
+|
+Exposure (x rays), coulombs per kilogram.
+
+
+|CPerm2
+|
+Surface charge density, coulombs per square metre.
+
+
+|CPerm3
+|
+Electric charge density, coulombs per cubic metre.
+
+
+|F
+|
+Electric capacitance in farads (C/V).
+
+
+|FPerm
+|
+Permittivity, farads per metre.
+
+
+|G
+|
+Magnetic flux density, gausses (1 G = 10-4 T).
+
+
+|Gy
+|
+Absorbed dose in grays (J/kg).
+
+
+|GyPers
+|
+Absorbed dose rate, grays per second.
+
+
+|H
+|
+Electric inductance in henrys (Wb/A).
+
+
+|HPerm
+|
+Permeability, henrys per metre.
+
+
+|Hz
+|
+Frequency in hertz (1/s).
+
+
+|HzPerHz
+|
+Frequency, rate of frequency change. Note: Users may need to supply a prefix such as m to show rates such as mHz/Hz.
+
+
+|HzPers
+|
+Rate of change of frequency in hertz per second.
+
+
+|J
+|
+Energy in joules (Nm = CV = Ws).
+
+
+|JPerK
+|
+Heat capacity in joules/kelvin.
+
+
+|JPerkg
+|
+Specific energy, Joules / kg.
+
+
+|JPerkgK
+|
+Specific heat capacity, specific entropy, joules per kilogram Kelvin.
+
+
+|JPerm2
+|
+Insulation energy density, joules per square metre or watt second per square metre.
+
+
+|JPerm3
+|
+Energy density, joules per cubic metre.
+
+
+|JPermol
+|
+Molar energy, joules per mole.
+
+
+|JPermolK
+|
+Molar entropy, molar heat capacity, joules per mole kelvin.
+
+
+|JPers
+|
+Energy rate in joules per second (J/s).
+
+
+|K
+|
+Temperature in kelvins.
+
+
+|KPers
+|
+Temperature change rate in kelvins per second.
+
+
+|M
+|
+Length, nautical miles (1 M = 1852 m).
+
+
+|Mx
+|
+Magnetic flux, maxwells (1 Mx = 10-8 Wb).
+
+
+|N
+|
+Force in newtons (kgm/s).
+
+
+|NPerm
+|
+Surface tension, newton per metre.
+
+
+|Nm
+|
+Moment of force, newton metres.
+
+
+|Oe
+|
+Magnetic field in oersteds, (1 Oe = (103/4p) A/m).
+
+
+|Pa
+|
+Pressure in pascals (N/m). Note: the absolute or relative measurement of pressure is implied with this entry. See below for more explicit forms.
+
+
+|PaPers
+|
+Pressure change rate in pascals per second.
+
+
+|Pas
+|
+Dynamic viscosity, pascal seconds.
+
+
+|Q
+|
+Quantity power, Q.
+
+
+|Qh
+|
+Quantity energy, Qh.
+
+
+|S
+|
+Conductance in siemens.
+
+
+|SPerm
+|
+Conductance per length (F/m).
+
+
+|Sv
+|
+Dose equivalent in sieverts (J/kg).
+
+
+|T
+|
+Magnetic flux density in teslas (Wb/m2).
+
+
+|V
+|
+Electric potential in volts (W/A).
+
+
+|V2
+|
+Volt squared (W/A).
+
+
+|V2h
+|
+Volt-squared hour, volt-squared-hours.
+
+
+|VA
+|
+Apparent power in volt amperes. See also real power and reactive power.
+
+
+|VAh
+|
+Apparent energy in volt ampere hours.
+
+
+|VAr
+|
+Reactive power in volt amperes reactive. The reactive or imaginary component of electrical power (VIsin(phi)). (See also real power and apparent power).
+
+Note: Different meter designs use different methods to arrive at their results. Some meters may compute reactive power as an arithmetic value, while others compute the value vectorially. The data consumer should determine the method in use and the suitability of the measurement for the intended purpose.
+
+
+|VArh
+|
+Reactive energy in volt ampere reactive hours.
+
+
+|VPerHz
+|
+Magnetic flux in volt per hertz.
+
+
+|VPerV
+|
+Voltage, ratio of voltages. Note: Users may need to supply a prefix such as m to show rates such as mV/V.
+
+
+|VPerVA
+|
+Power factor, PF, the ratio of the active power to the apparent power. Note: The sign convention used for power factor will differ between IEC meters and EEI (ANSI) meters. It is assumed that the data consumers understand the type of meter being used and agree on the sign convention in use at any given utility.
+
+
+|VPerVAr
+|
+Power factor, PF, the ratio of the active power to the apparent power. Note: The sign convention used for power factor will differ between IEC meters and EEI (ANSI) meters. It is assumed that the data consumers understand the type of meter being used and agree on the sign convention in use at any given utility.
+
+
+|VPerm
+|
+Electric field strength, volts per metre.
+
+
+|Vh
+|
+Volt-hour, Volt hours.
+
+
+|Vs
+|
+Volt seconds (Ws/A).
+
+
+|W
+|
+Real power in watts (J/s). Electrical power may have real and reactive components. The real portion of electrical power (I&#178;R or VIcos(phi)), is expressed in Watts. See also apparent power and reactive power.
+
+
+|WPerA
+|
+Active power per current flow, watts per Ampere.
+
+
+|WPerW
+|
+Signal Strength, ratio of power. Note: Users may need to supply a prefix such as m to show rates such as mW/W.
+
+
+|WPerm2
+|
+Heat flux density, irradiance, watts per square metre.
+
+
+|WPerm2sr
+|
+Radiance, watts per square metre steradian.
+
+
+|WPermK
+|
+Thermal conductivity in watt/metres kelvin.
+
+
+|WPers
+|
+Ramp rate in watts per second.
+
+
+|WPersr
+|
+Radiant intensity, watts per steradian.
+
+
+|Wb
+|
+Magnetic flux in webers (Vs).
+
+
+|Wh
+|
+Real energy in watt hours.
+
+
+|anglemin
+|
+Plane angle, minutes.
+
+
+|anglesec
+|
+Plane angle, seconds.
+
+
+|bar
+|
+Pressure in bars, (1 bar = 100 kPa).
+
+
+|cd
+|
+Luminous intensity in candelas.
+
+
+|charPers
+|
+Data rate (baud) in characters per second.
+
+
+|character
+|
+Number of characters.
+
+
+|cosPhi
+|
+Power factor, dimensionless.
+
+Note 1: This definition of power factor only holds for balanced systems. See the alternative definition under code 153.
+
+Note 2: Beware of differing sign conventions in use between the IEC and EEI. It is assumed that the data consumer understands the type of meter in use and the sign convention in use by the utility.
+
+
+|count
+|
+Amount of substance, Counter value.
+
+
+|d
+|
+Time in days, day = 24 h = 86400 s.
+
+
+|dB
+|
+Sound pressure level in decibels. Note: multiplier d is included in this unit symbol for compatibility with IEC 61850-7-3.
+
+
+|dBm
+|
+Power level (logarithmic ratio of signal strength , Bel-mW), normalized to 1mW. Note: multiplier d is included in this unit symbol for compatibility with IEC 61850-7-3.
+
+
+|deg
+|
+Plane angle in degrees.
+
+
+|degC
+|
+Relative temperature in degrees Celsius.
+
+In the SI unit system the symbol is C. Electric charge is measured in coulomb that has the unit symbol C. To distinguish degree Celsius from coulomb the symbol used in the UML is degC. The reason for not using C is that the special character is difficult to manage in software.
+
+
+|ft3
+|
+Volume, cubic feet.
+
+
+|gPerg
+|
+Concentration, The ratio of the mass of a solute divided by the mass of the solution. Note: Users may need use a prefix such a to express a quantity such as g/g.
+
+
+|gal
+|
+Volume in gallons, US gallon (1 gal = 231 in3 = 128 fl ounce).
+
+
+|h
+|
+Time in hours, hour = 60 min = 3600 s.
+
+
+|ha
+|
+Area, hectares.
+
+
+|kat
+|
+Catalytic activity, katal = mol / s.
+
+
+|katPerm3
+|
+Catalytic activity concentration, katals per cubic metre.
+
+
+|kg
+|
+Mass in kilograms. Note: multiplier k is included in this unit symbol for compatibility with IEC 61850-7-3.
+
+
+|kgPerJ
+|
+Weight per energy in kilograms per joule (kg/J). Note: multiplier k is included in this unit symbol for compatibility with IEC 61850-7-3.
+
+
+|kgPerm3
+|
+Density in kilogram/cubic metres (kg/m). Note: multiplier k is included in this unit symbol for compatibility with IEC 61850-7-3.
+
+
+|kgm
+|
+Moment of mass in kilogram metres (kgm) (first moment of mass). Note: multiplier k is included in this unit symbol for compatibility with IEC 61850-7-3.
+
+
+|kgm2
+|
+Moment of mass in kilogram square metres (kgm) (Second moment of mass, commonly called the moment of inertia). Note: multiplier k is included in this unit symbol for compatibility with IEC 61850-7-3.
+
+
+|kn
+|
+Speed, knots (1 kn = 1852/3600) m/s.
+
+
+|l
+|
+Volume in litres, litre = dm3 = m3/1000.
+
+
+|lPerh
+|
+Volumetric flow rate, litres per hour.
+
+
+|lPerl
+|
+Concentration, The ratio of the volume of a solute divided by the volume of the solution. Note: Users may need use a prefix such a to express a quantity such as L/L.
+
+
+|lPers
+|
+Volumetric flow rate in litres per second.
+
+
+|lm
+|
+Luminous flux in lumens (cdsr).
+
+
+|lx
+|
+Illuminance in lux (lm/m).
+
+
+|m
+|
+Length in metres.
+
+
+|m2
+|
+Area in square metres (m).
+
+
+|m2Pers
+|
+Viscosity in square metres / second (m/s).
+
+
+|m3
+|
+Volume in cubic metres (m).
+
+
+|m3Compensated
+|
+Volume, cubic metres, with the value compensated for weather effects.
+
+
+|m3Perh
+|
+Volumetric flow rate, cubic metres per hour.
+
+
+|m3Perkg
+|
+Specific volume, cubic metres per kilogram, v.
+
+
+|m3Pers
+|
+Volumetric flow rate in cubic metres per second (m/s).
+
+
+|m3Uncompensated
+|
+Volume, cubic metres, with the value uncompensated for weather effects.
+
+
+|mPerm3
+|
+Fuel efficiency in metres per cubic metres (m/m).
+
+
+|mPers
+|
+Velocity in metres per second (m/s).
+
+
+|mPers2
+|
+Acceleration in metres per second squared (m/s).
+
+
+|min
+|
+Time in minutes, minute = 60 s.
+
+
+|mmHg
+|
+Pressure, millimetres of mercury (1 mmHg is approximately 133.3 Pa).
+
+
+|mol
+|
+Amount of substance in moles.
+
+
+|molPerkg
+|
+Concentration, Molality, the amount of solute in moles and the amount of solvent in kilograms.
+
+
+|molPerm3
+|
+Concentration, The amount of substance concentration, (c), the amount of solvent in moles divided by the volume of solution in m.
+
+
+|molPermol
+|
+Concentration, Molar fraction, the ratio of the molar amount of a solute divided by the molar amount of the solution.
+
+
+|none
+|
+Dimension less quantity, e.g. count, per unit, etc.
+
+
+|ohm
+|
+Electric resistance in ohms (V/A).
+
+
+|ohmPerm
+|
+Electric resistance per length in ohms per metre ((V/A)/m).
+
+
+|ohmm
+|
+Resistivity, ohm metres, (rho).
+
+
+|onePerHz
+|
+Reciprocal of frequency (1/Hz).
+
+
+|onePerm
+|
+Wavenumber, reciprocal metres, (1/m).
+
+
+|ppm
+|
+Concentration in parts per million.
+
+
+|rad
+|
+Plane angle in radians (m/m).
+
+
+|radPers
+|
+Angular velocity in radians per second (rad/s).
+
+
+|radPers2
+|
+Angular acceleration, radians per second squared.
+
+
+|rev
+|
+Amount of rotation, revolutions.
+
+
+|rotPers
+|
+Rotations per second (1/s). See also Hz (1/s).
+
+
+|s
+|
+Time in seconds.
+
+
+|sPers
+|
+Time, Ratio of time. Note: Users may need to supply a prefix such as &#181; to show rates such as &#181;s/s.
+
+
+|sr
+|
+Solid angle in steradians (m2/m2).
+
+
+|therm
+|
+Energy, therms.
+
+
+|tonne
+|
+Mass in tons, tonne or metric ton (1000 kg = 1 Mg).
+
+|===
+
+=== Datatypes
+
+[#ActivePower]
+==== ActivePower
+
+Product of RMS value of the voltage and the RMS value of the in-phase component of the current.
+
+
+XSD type: float
+
+[#AngleDegrees]
+==== AngleDegrees
+
+Measurement of angle in degrees.
+
+
+XSD type: float
+
+[#CurrentFlow]
+==== CurrentFlow
+
+Electrical current with sign convention: positive flow is out of the conducting equipment into the connectivity node. Can be both AC and DC.
+
+
+XSD type: float
+
+[#ReactivePower]
+==== ReactivePower
+
+Product of RMS value of the voltage and the RMS value of the quadrature component of the current.
+
+
+XSD type: float
+
+[#Voltage]
+==== Voltage
+
+Electrical voltage, can be both AC and DC.
+
+
+XSD type: float
+
+
+=== Primitive Types
+
+[#CGMES-StateVariables-Boolean]
+==== Boolean
+
+A type with the value space "true" and "false".
+
+
+XSD type: boolean
+
+[#CGMES-StateVariables-Float]
+==== Float
+
+A floating point number. The range is unspecified and not limited.
+
+
+XSD type: float
+
+[#CGMES-StateVariables-String]
+==== String
+
+A string consisting of a sequence of characters. The character encoding is UTF-8. The string length is unspecified and unlimited.
+
+
+XSD type: string
+

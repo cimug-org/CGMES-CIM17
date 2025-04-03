@@ -1,0 +1,31 @@
+:pdf-themesdir: {docdir}
+:pdf-theme: adoc-article-rdfs
+
+= GeographicalLocation Profile
+
+// Settings:
+:doctype: article
+:reproducible:
+:icons: font
+:sectnums:
+:sectnumlevels: 4
+:xrefstyle: short
+:toclevels: 4
+:toc-title: Table of Contents
+:toc:
+:toc-placement: preamble
+
+== Overview
+
+Profile namespace: http://iec.ch/TC57/ns/CIM/GeographicalLocation-EU/3.0#
+
+plantuml::./Profiles/CGMES-GeographicalLocation.rdfs-t2b.puml[format=svg, align=center, caption="Figure 1: ", title="GeographicalLocation Profile"]
+
+== Profile Specification
+
+
+
+
+
+
+

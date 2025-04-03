@@ -1,0 +1,1348 @@
+@startuml
+top to bottom direction
+hide empty methods
+
+
+skinparam BackgroundColor #FFFFFF
+skinparam shadowing false
+skinparam RoundCorner 5
+skinparam BorderColor #454645
+skinparam ArrowColor #454645
+skinparam FontColor #000000
+
+skinparam class {
+  ' Concrete classes style definition
+  BackgroundColor #FFFFE0
+  FontColor #000000
+  AttributeFontColor #000000
+  StereotypeFontColor #000000
+  HeaderFontColor #000000
+  BorderColor #454645
+  BorderThickness 1
+  
+  ' Abstract classes style definition
+  BackgroundColor<<abstract>> #D3D3D3
+  FontColor<<abstract>> #000000
+  AttributeFontColor<<abstract>> #000000
+  StereotypeFontColor<<abstract>> #000000
+  HeaderFontColor<<abstract>> #000000
+  BorderColor<<abstract>> #454645
+  BorderThickness<<abstract>> 1
+  
+  ' Enumerations style definition
+  BackgroundColor<<enumeration>> #90EE90
+  FontColor<<enumeration>> #000000
+  AttributeFontColor<<enumeration>> #000000
+  StereotypeFontColor<<enumeration>> #000000
+  HeaderFontColor <<enumeration>> #000000
+  BorderColor<<enumeration>> #454645
+  BorderThickness<<enumeration>> 1
+  
+  ' CIMDatatypes style definition
+  BackgroundColor<<CIMDatatype>> #FFEBCD
+  FontColor<<CIMDatatype>> #000000
+  AttributeFontColor<<CIMDatatype>> #000000
+  StereotypeFontColor<<CIMDatatype>> #000000
+  HeaderFontColor<<CIMDatatype>> #000000
+  BorderColor<<CIMDatatype>> #454645
+  BorderThickness<<CIMDatatype>> 1
+  
+  ' Compound classes style definition
+  BackgroundColor<<Compound>> #FFEBCD
+  FontColor<<Compound>> #000000
+  AttributeFontColor<<Compound>> #000000
+  StereotypeFontColor<<Compound>> #000000
+  HeaderFontColor<<Compound>> #000000
+  BorderColor<<Compound>> #454645
+  BorderThickness<<Compound>> 1
+  
+  ' Primitive classes style definition
+  BackgroundColor<<Primitive>> #E6E6FF
+  FontColor<<Primitive>> #000000
+  AttributeFontColor<<Primitive>> #000000
+  StereotypeFontColor<<Primitive>> #000000
+  HeaderFontColor<<Primitive>> #000000
+  BorderColor<<Primitive>> #454645
+  BorderThickness<<Primitive>> 1
+  
+  ' Errors classes style definition
+  BackgroundColor<<error>> #FFC0CB
+  FontColor<<error>> #000000
+  AttributeFontColor<<error>> #000000
+  StereotypeFontColor<<error>> #000000
+  HeaderFontColor<<error>> #000000
+  BorderColor<<error>> #454645
+  BorderThickness<<error>> 1
+}
+skinparam shadowing true
+
+hide <<abstract>> stereotype
+hide <<error>> stereotype
+
+
+skinparam note {
+  BorderColor #454645
+  BorderThickness 1.5
+  FontSize 14
+  Font Bold
+  FontColor #000000
+}
+' Add a note towards the upper left corner of the diagram
+note as CoreEquipmentNote #lightyellow
+   Profile: CoreEquipment
+   Namespace: http://iec.ch/TC57/ns/CIM/CoreEquipment-EU/3.0#
+   
+   Profile Notes:
+      This profile represents the equipment of the power system and their hierarchical
+      relationships.
+      
+end note
+
+' ACDCConverter inherits from ConductingEquipment
+abstract class ACDCConverter  <<abstract>> {
+   +baseS : ApparentPower [0..1]
+   +idleLoss : ActivePower [0..1]
+   +maxP : ActivePower [0..1]
+   +maxUdc : Voltage [0..1]
+   +minP : ActivePower [0..1]
+   +minUdc : Voltage [0..1]
+   +numberOfValves : integer [0..1]
+   +ratedUdc : Voltage [0..1]
+   +resistiveLoss : Resistance [0..1]
+   +switchingLoss : ActivePowerPerCurrentFlow [0..1]
+   +valveU0 : Voltage [0..1]
+}
+
+ConductingEquipment <|-- ACDCConverter
+ACDCConverter "+ConverterDCSides 0..*" --> "+PccTerminal 0..1" Terminal
+
+' ACDCConverterDCTerminal inherits from DCBaseTerminal
+class ACDCConverterDCTerminal   {
+   +polarity : DCPolarityKind [1]
+}
+
+DCBaseTerminal <|-- ACDCConverterDCTerminal
+ACDCConverterDCTerminal "+DCTerminals 0..*" --> "+DCConductingEquipment 1" ACDCConverter
+
+' ACDCTerminal inherits from IdentifiedObject
+abstract class ACDCTerminal  <<abstract>> {
+   +sequenceNumber : integer [1]
+}
+
+IdentifiedObject <|-- ACDCTerminal
+ACDCTerminal "+Terminal 0..*" --> "+BusNameMarker 0..1" BusNameMarker
+
+' ACLineSegment inherits from Conductor
+class ACLineSegment   {
+   +bch : Susceptance [1]
+   +gch : Conductance [0..1]
+   +r : Resistance [1]
+   +x : Reactance [1]
+}
+
+Conductor <|-- ACLineSegment
+
+' ActivePowerLimit inherits from OperationalLimit
+class ActivePowerLimit   {
+   +normalValue : ActivePower [1]
+}
+
+OperationalLimit <|-- ActivePowerLimit
+OperationalLimit "+OperationalLimitValue 0..*" --o "+OperationalLimitSet 1" OperationalLimitSet
+OperationalLimit "+OperationalLimit 0..*" --> "+OperationalLimitType 1" OperationalLimitType
+
+' ApparentPowerLimit inherits from OperationalLimit
+class ApparentPowerLimit   {
+   +normalValue : ApparentPower [1]
+}
+
+OperationalLimit <|-- ApparentPowerLimit
+OperationalLimit "+OperationalLimitValue 0..*" --o "+OperationalLimitSet 1" OperationalLimitSet
+OperationalLimit "+OperationalLimit 0..*" --> "+OperationalLimitType 1" OperationalLimitType
+
+' AsynchronousMachine inherits from RotatingMachine
+class AsynchronousMachine   {
+   +nominalFrequency : Frequency [0..1]
+   +nominalSpeed : RotationSpeed [0..1]
+}
+
+RotatingMachine <|-- AsynchronousMachine
+
+' AuxiliaryEquipment inherits from Equipment
+abstract class AuxiliaryEquipment  <<abstract>> {
+}
+
+Equipment <|-- AuxiliaryEquipment
+AuxiliaryEquipment "+AuxiliaryEquipment 0..*" --> "+Terminal 1" Terminal
+
+' BaseVoltage inherits from IdentifiedObject
+class BaseVoltage   {
+   +nominalVoltage : Voltage [1]
+}
+
+IdentifiedObject <|-- BaseVoltage
+
+' BasicIntervalSchedule inherits from IdentifiedObject
+abstract class BasicIntervalSchedule  <<abstract>> {
+   +startTime : dateTime [1]
+   +value1Multiplier : UnitMultiplier [0..1]
+   +value1Unit : UnitSymbol [1]
+   +value2Multiplier : UnitMultiplier [0..1]
+   +value2Unit : UnitSymbol [0..1]
+}
+
+IdentifiedObject <|-- BasicIntervalSchedule
+
+' BatteryUnit inherits from PowerElectronicsUnit
+class BatteryUnit   {
+   +ratedE : RealEnergy [1]
+}
+
+PowerElectronicsUnit <|-- BatteryUnit
+
+' Bay inherits from EquipmentContainer
+class Bay   {
+}
+
+EquipmentContainer <|-- Bay
+Bay "+Bays 0..*" --o "+VoltageLevel 1" VoltageLevel
+
+' BoundaryPoint inherits from PowerSystemResource
+class BoundaryPoint <<European>>  {
+   +<<European>> fromEndIsoCode : string [1]
+   +<<European>> fromEndName : string [1]
+   +<<European>> fromEndNameTso : string [1]
+   +<<European>> isDirectCurrent : boolean [0..1]
+   +<<European>> isExcludedFromAreaInterchange : boolean [0..1]
+   +<<European>> toEndIsoCode : string [1]
+   +<<European>> toEndName : string [1]
+   +<<European>> toEndNameTso : string [1]
+}
+
+PowerSystemResource <|-- BoundaryPoint
+BoundaryPoint "+BoundaryPoint 0..1" --> "+ConnectivityNode 1" ConnectivityNode : <<European>>
+
+' Breaker inherits from ProtectedSwitch
+class Breaker   {
+}
+
+ProtectedSwitch <|-- Breaker
+
+' BusNameMarker inherits from IdentifiedObject
+class BusNameMarker   {
+   +priority : integer [0..1]
+}
+
+IdentifiedObject <|-- BusNameMarker
+BusNameMarker "+BusNameMarker 0..*" --> "+ReportingGroup 0..1" ReportingGroup
+
+' BusbarSection inherits from Connector
+class BusbarSection   {
+}
+
+Connector <|-- BusbarSection
+
+' CAESPlant inherits from PowerSystemResource
+class CAESPlant   {
+}
+
+PowerSystemResource <|-- CAESPlant
+
+' Clamp inherits from ConductingEquipment
+class Clamp   {
+   +lengthFromTerminal1 : Length [0..1]
+}
+
+ConductingEquipment <|-- Clamp
+Clamp "+Clamp 0..*" --> "+ACLineSegment 1" ACLineSegment
+
+' CogenerationPlant inherits from PowerSystemResource
+class CogenerationPlant   {
+}
+
+PowerSystemResource <|-- CogenerationPlant
+
+' CombinedCyclePlant inherits from PowerSystemResource
+class CombinedCyclePlant   {
+}
+
+PowerSystemResource <|-- CombinedCyclePlant
+
+' ConductingEquipment inherits from Equipment
+abstract class ConductingEquipment  <<abstract>> {
+}
+
+Equipment <|-- ConductingEquipment
+ConductingEquipment "+ConductingEquipment 0..*" --> "+BaseVoltage 0..1" BaseVoltage
+
+' Conductor inherits from ConductingEquipment
+abstract class Conductor  <<abstract>> {
+   +length : Length [0..1]
+}
+
+ConductingEquipment <|-- Conductor
+
+' ConformLoad inherits from EnergyConsumer
+class ConformLoad   {
+}
+
+EnergyConsumer <|-- ConformLoad
+ConformLoad "+EnergyConsumers 0..*" --> "+LoadGroup 1" ConformLoadGroup
+
+' ConformLoadGroup inherits from LoadGroup
+class ConformLoadGroup   {
+}
+
+LoadGroup <|-- ConformLoadGroup
+
+' ConformLoadSchedule inherits from SeasonDayTypeSchedule
+class ConformLoadSchedule   {
+}
+
+SeasonDayTypeSchedule <|-- ConformLoadSchedule
+ConformLoadSchedule "+ConformLoadSchedules 0..*" --o "+ConformLoadGroup 1" ConformLoadGroup
+
+' ConnectivityNode inherits from IdentifiedObject
+class ConnectivityNode   {
+}
+
+IdentifiedObject <|-- ConnectivityNode
+ConnectivityNode "+ConnectivityNodes 0..*" --> "+ConnectivityNodeContainer 1" ConnectivityNodeContainer
+
+' ConnectivityNodeContainer inherits from PowerSystemResource
+abstract class ConnectivityNodeContainer  <<abstract>> {
+}
+
+PowerSystemResource <|-- ConnectivityNodeContainer
+
+' Connector inherits from ConductingEquipment
+abstract class Connector  <<abstract>> {
+}
+
+ConductingEquipment <|-- Connector
+
+' ControlArea inherits from PowerSystemResource
+class ControlArea   {
+   +type : ControlAreaTypeKind [1]
+}
+
+PowerSystemResource <|-- ControlArea
+ControlArea "+ControlArea 0..1" --> "+EnergyArea 1" EnergyArea
+
+' ControlAreaGeneratingUnit inherits from IdentifiedObject
+class ControlAreaGeneratingUnit   {
+}
+
+IdentifiedObject <|-- ControlAreaGeneratingUnit
+ControlAreaGeneratingUnit "+ControlAreaGeneratingUnit 0..*" --o "+ControlArea 1" ControlArea
+ControlAreaGeneratingUnit "+ControlAreaGeneratingUnit 0..*" --> "+GeneratingUnit 1" GeneratingUnit
+
+' CsConverter inherits from ACDCConverter
+class CsConverter   {
+   +maxAlpha : AngleDegrees [0..1]
+   +maxGamma : AngleDegrees [0..1]
+   +maxIdc : CurrentFlow [0..1]
+   +minAlpha : AngleDegrees [0..1]
+   +minGamma : AngleDegrees [0..1]
+   +minIdc : CurrentFlow [0..1]
+   +ratedIdc : CurrentFlow [0..1]
+}
+
+ACDCConverter <|-- CsConverter
+
+' CurrentLimit inherits from OperationalLimit
+class CurrentLimit   {
+   +normalValue : CurrentFlow [1]
+}
+
+OperationalLimit <|-- CurrentLimit
+
+' CurrentTransformer inherits from Sensor
+class CurrentTransformer   {
+}
+
+Sensor <|-- CurrentTransformer
+
+' Curve inherits from IdentifiedObject
+abstract class Curve  <<abstract>> {
+   +curveStyle : CurveStyle [1]
+   +xUnit : UnitSymbol [1]
+   +y1Unit : UnitSymbol [1]
+   +y2Unit : UnitSymbol [0..1]
+}
+
+IdentifiedObject <|-- Curve
+
+' CurveData
+class CurveData   {
+   +xvalue : float [1]
+   +y1value : float [1]
+   +y2value : float [0..1]
+}
+
+CurveData "+CurveDatas 0..*" --o "+Curve 1" Curve
+
+' Cut inherits from Switch
+class Cut   {
+   +lengthFromTerminal1 : Length [0..1]
+}
+
+Switch <|-- Cut
+Cut "+Cut 0..*" --> "+ACLineSegment 1" ACLineSegment
+
+' DCBaseTerminal inherits from ACDCTerminal
+abstract class DCBaseTerminal  <<abstract>> {
+}
+
+ACDCTerminal <|-- DCBaseTerminal
+DCBaseTerminal "+DCTerminals 0..*" --> "+DCNode 0..1" DCNode
+
+' DCBreaker inherits from DCSwitch
+class DCBreaker   {
+}
+
+DCSwitch <|-- DCBreaker
+
+' DCBusbar inherits from DCConductingEquipment
+class DCBusbar   {
+}
+
+DCConductingEquipment <|-- DCBusbar
+
+' DCChopper inherits from DCConductingEquipment
+class DCChopper   {
+}
+
+DCConductingEquipment <|-- DCChopper
+
+' DCConductingEquipment inherits from Equipment
+abstract class DCConductingEquipment  <<abstract>> {
+   +ratedUdc : Voltage [1]
+}
+
+Equipment <|-- DCConductingEquipment
+
+' DCConverterUnit inherits from DCEquipmentContainer
+class DCConverterUnit   {
+   +operationMode : DCConverterOperatingModeKind [1]
+}
+
+DCEquipmentContainer <|-- DCConverterUnit
+DCConverterUnit "+DCConverterUnit 0..*" --o "+Substation 0..1" Substation
+
+' DCDisconnector inherits from DCSwitch
+class DCDisconnector   {
+}
+
+DCSwitch <|-- DCDisconnector
+
+' DCEquipmentContainer inherits from EquipmentContainer
+abstract class DCEquipmentContainer  <<abstract>> {
+}
+
+EquipmentContainer <|-- DCEquipmentContainer
+
+' DCGround inherits from DCConductingEquipment
+class DCGround   {
+   +inductance : Inductance [0..1]
+   +r : Resistance [0..1]
+}
+
+DCConductingEquipment <|-- DCGround
+
+' DCLine inherits from DCEquipmentContainer
+class DCLine   {
+}
+
+DCEquipmentContainer <|-- DCLine
+DCLine "+DCLines 0..*" --> "+Region 0..1" SubGeographicalRegion
+
+' DCLineSegment inherits from DCConductingEquipment
+class DCLineSegment   {
+   +capacitance : Capacitance [1]
+   +inductance : Inductance [1]
+   +length : Length [0..1]
+   +resistance : Resistance [1]
+}
+
+DCConductingEquipment <|-- DCLineSegment
+
+' DCNode inherits from IdentifiedObject
+class DCNode   {
+}
+
+IdentifiedObject <|-- DCNode
+DCNode "+DCNodes 0..*" --> "+DCEquipmentContainer 1" DCEquipmentContainer
+
+' DCSeriesDevice inherits from DCConductingEquipment
+class DCSeriesDevice   {
+   +inductance : Inductance [1]
+   +resistance : Resistance [1]
+}
+
+DCConductingEquipment <|-- DCSeriesDevice
+
+' DCShunt inherits from DCConductingEquipment
+class DCShunt   {
+   +capacitance : Capacitance [1]
+   +resistance : Resistance [1]
+}
+
+DCConductingEquipment <|-- DCShunt
+
+' DCSwitch inherits from DCConductingEquipment
+class DCSwitch   {
+}
+
+DCConductingEquipment <|-- DCSwitch
+
+' DCTerminal inherits from DCBaseTerminal
+class DCTerminal   {
+}
+
+DCBaseTerminal <|-- DCTerminal
+DCTerminal "+DCTerminals 0..*" --> "+DCConductingEquipment 1" DCConductingEquipment
+
+' DayType inherits from IdentifiedObject
+class DayType   {
+}
+
+IdentifiedObject <|-- DayType
+
+' DisconnectingCircuitBreaker inherits from Breaker
+class DisconnectingCircuitBreaker   {
+}
+
+Breaker <|-- DisconnectingCircuitBreaker
+
+' Disconnector inherits from Switch
+class Disconnector   {
+}
+
+Switch <|-- Disconnector
+
+' EarthFaultCompensator inherits from ConductingEquipment
+abstract class EarthFaultCompensator  <<abstract>> {
+}
+
+ConductingEquipment <|-- EarthFaultCompensator
+
+' EnergyArea inherits from IdentifiedObject
+abstract class EnergyArea  <<abstract>> {
+}
+
+IdentifiedObject <|-- EnergyArea
+
+' EnergyConnection inherits from ConductingEquipment
+abstract class EnergyConnection  <<abstract>> {
+}
+
+ConductingEquipment <|-- EnergyConnection
+
+' EnergyConsumer inherits from EnergyConnection
+class EnergyConsumer   {
+   +pfixed : ActivePower [0..1]
+   +pfixedPct : PerCent [0..1]
+   +qfixed : ReactivePower [0..1]
+   +qfixedPct : PerCent [0..1]
+}
+
+EnergyConnection <|-- EnergyConsumer
+EnergyConsumer "+EnergyConsumer 0..*" --> "+LoadResponse 0..1" LoadResponseCharacteristic
+
+' EnergySchedulingType inherits from IdentifiedObject
+class EnergySchedulingType   {
+}
+
+IdentifiedObject <|-- EnergySchedulingType
+
+' EnergySource inherits from EnergyConnection
+class EnergySource   {
+   +nominalVoltage : Voltage [0..1]
+   +pMax : ActivePower [0..1]
+   +pMin : ActivePower [0..1]
+}
+
+EnergyConnection <|-- EnergySource
+EnergySource "+EnergySource 0..*" --> "+EnergySchedulingType 0..1" EnergySchedulingType
+
+' Equipment inherits from PowerSystemResource
+abstract class Equipment  <<abstract>> {
+   +aggregate : boolean [0..1]
+   +normallyInService : boolean [0..1]
+}
+
+PowerSystemResource <|-- Equipment
+Equipment "+Equipments 0..*" --o "+EquipmentContainer 0..1" EquipmentContainer
+
+' EquipmentContainer inherits from ConnectivityNodeContainer
+abstract class EquipmentContainer  <<abstract>> {
+}
+
+ConnectivityNodeContainer <|-- EquipmentContainer
+
+' EquivalentBranch inherits from EquivalentEquipment
+class EquivalentBranch   {
+   +r : Resistance [1]
+   +r21 : Resistance [0..1]
+   +x : Reactance [1]
+   +x21 : Reactance [0..1]
+}
+
+EquivalentEquipment <|-- EquivalentBranch
+
+' EquivalentEquipment inherits from ConductingEquipment
+abstract class EquivalentEquipment  <<abstract>> {
+}
+
+ConductingEquipment <|-- EquivalentEquipment
+EquivalentEquipment "+EquivalentEquipments 0..*" --o "+EquivalentNetwork 0..1" EquivalentNetwork
+
+' EquivalentInjection inherits from EquivalentEquipment
+class EquivalentInjection   {
+   +maxP : ActivePower [0..1]
+   +maxQ : ReactivePower [0..1]
+   +minP : ActivePower [0..1]
+   +minQ : ReactivePower [0..1]
+   +regulationCapability : boolean [1]
+}
+
+EquivalentEquipment <|-- EquivalentInjection
+EquivalentInjection "+EquivalentInjection 0..*" --> "+ReactiveCapabilityCurve 0..1" ReactiveCapabilityCurve
+
+' EquivalentNetwork inherits from ConnectivityNodeContainer
+class EquivalentNetwork   {
+}
+
+ConnectivityNodeContainer <|-- EquivalentNetwork
+
+' EquivalentShunt inherits from EquivalentEquipment
+class EquivalentShunt   {
+   +b : Susceptance [1]
+   +g : Conductance [1]
+}
+
+EquivalentEquipment <|-- EquivalentShunt
+
+' ExternalNetworkInjection inherits from RegulatingCondEq
+class ExternalNetworkInjection   {
+   +governorSCD : ActivePowerPerFrequency [1]
+   +maxP : ActivePower [1]
+   +maxQ : ReactivePower [1]
+   +minP : ActivePower [1]
+   +minQ : ReactivePower [1]
+}
+
+RegulatingCondEq <|-- ExternalNetworkInjection
+
+' FaultIndicator inherits from AuxiliaryEquipment
+class FaultIndicator   {
+}
+
+AuxiliaryEquipment <|-- FaultIndicator
+
+' FossilFuel inherits from IdentifiedObject
+class FossilFuel   {
+   +fossilFuelType : FuelType [1]
+}
+
+IdentifiedObject <|-- FossilFuel
+FossilFuel "+FossilFuels 0..*" --> "+ThermalGeneratingUnit 1" ThermalGeneratingUnit
+
+' Fuse inherits from Switch
+class Fuse   {
+}
+
+Switch <|-- Fuse
+
+' GeneratingUnit inherits from Equipment
+class GeneratingUnit   {
+   +genControlSource : GeneratorControlSource [0..1]
+   +governorSCD : PerCent [0..1]
+   +longPF : float [0..1]
+   +maximumAllowableSpinningReserve : ActivePower [0..1]
+   +maxOperatingP : ActivePower [1]
+   +minOperatingP : ActivePower [1]
+   +nominalP : ActivePower [0..1]
+   +ratedGrossMaxP : ActivePower [0..1]
+   +ratedGrossMinP : ActivePower [0..1]
+   +ratedNetMaxP : ActivePower [0..1]
+   +shortPF : float [0..1]
+   +startupCost : Money [0..1]
+   +startupTime : Seconds [0..1]
+   +totalEfficiency : PerCent [0..1]
+   +variableCost : Money [0..1]
+}
+
+Equipment <|-- GeneratingUnit
+
+' GeographicalRegion inherits from IdentifiedObject
+class GeographicalRegion   {
+}
+
+IdentifiedObject <|-- GeographicalRegion
+
+' GrossToNetActivePowerCurve inherits from Curve
+class GrossToNetActivePowerCurve   {
+}
+
+Curve <|-- GrossToNetActivePowerCurve
+GrossToNetActivePowerCurve "+GrossToNetActivePowerCurves 0..*" --o "+GeneratingUnit 1" GeneratingUnit
+
+' Ground inherits from ConductingEquipment
+class Ground   {
+}
+
+ConductingEquipment <|-- Ground
+
+' GroundDisconnector inherits from Switch
+class GroundDisconnector   {
+}
+
+Switch <|-- GroundDisconnector
+
+' GroundingImpedance inherits from EarthFaultCompensator
+class GroundingImpedance   {
+}
+
+EarthFaultCompensator <|-- GroundingImpedance
+
+' HydroGeneratingUnit inherits from GeneratingUnit
+class HydroGeneratingUnit   {
+   +dropHeight : Length [0..1]
+   +energyConversionCapability : HydroEnergyConversionKind [0..1]
+   +turbineType : HydroTurbineKind [0..1]
+}
+
+GeneratingUnit <|-- HydroGeneratingUnit
+HydroGeneratingUnit "+HydroGeneratingUnits 0..*" --o "+HydroPowerPlant 0..1" HydroPowerPlant
+
+' HydroPowerPlant inherits from PowerSystemResource
+class HydroPowerPlant   {
+   +hydroPlantStorageType : HydroPlantStorageKind [1]
+}
+
+PowerSystemResource <|-- HydroPowerPlant
+
+' HydroPump inherits from Equipment
+class HydroPump   {
+}
+
+Equipment <|-- HydroPump
+HydroPump "+HydroPumps 0..*" --o "+HydroPowerPlant 0..1" HydroPowerPlant
+HydroPump "+HydroPump 0..1" --> "+RotatingMachine 1" RotatingMachine
+
+' IdentifiedObject
+abstract class IdentifiedObject  <<abstract>> {
+   +mRID : string [1]
+   +description : string [0..1]
+   +<<European>> energyIdentCodeEic : string [0..1]
+   +name : string [1]
+   +<<European>> shortName : string [0..1]
+}
+
+
+' Jumper inherits from Switch
+class Jumper   {
+}
+
+Switch <|-- Jumper
+
+' Junction inherits from Connector
+class Junction   {
+}
+
+Connector <|-- Junction
+
+' Line inherits from EquipmentContainer
+class Line   {
+}
+
+EquipmentContainer <|-- Line
+Line "+Lines 0..*" --o "+Region 0..1" SubGeographicalRegion
+
+' LinearShuntCompensator inherits from ShuntCompensator
+class LinearShuntCompensator   {
+   +bPerSection : Susceptance [1]
+   +gPerSection : Conductance [1]
+}
+
+ShuntCompensator <|-- LinearShuntCompensator
+
+' LoadArea inherits from EnergyArea
+class LoadArea   {
+}
+
+EnergyArea <|-- LoadArea
+
+' LoadBreakSwitch inherits from ProtectedSwitch
+class LoadBreakSwitch   {
+}
+
+ProtectedSwitch <|-- LoadBreakSwitch
+
+' LoadGroup inherits from IdentifiedObject
+abstract class LoadGroup  <<abstract>> {
+}
+
+IdentifiedObject <|-- LoadGroup
+LoadGroup "+LoadGroups 0..*" --o "+SubLoadArea 1" SubLoadArea
+
+' LoadResponseCharacteristic inherits from IdentifiedObject
+class LoadResponseCharacteristic   {
+   +exponentModel : boolean [1]
+   +pConstantCurrent : float [0..1]
+   +pConstantImpedance : float [0..1]
+   +pConstantPower : float [0..1]
+   +pFrequencyExponent : float [0..1]
+   +pVoltageExponent : float [0..1]
+   +qConstantCurrent : float [0..1]
+   +qConstantImpedance : float [0..1]
+   +qConstantPower : float [0..1]
+   +qFrequencyExponent : float [0..1]
+   +qVoltageExponent : float [0..1]
+}
+
+IdentifiedObject <|-- LoadResponseCharacteristic
+
+' NonConformLoad inherits from EnergyConsumer
+class NonConformLoad   {
+}
+
+EnergyConsumer <|-- NonConformLoad
+NonConformLoad "+EnergyConsumers 0..*" --> "+LoadGroup 1" NonConformLoadGroup
+
+' NonConformLoadGroup inherits from LoadGroup
+class NonConformLoadGroup   {
+}
+
+LoadGroup <|-- NonConformLoadGroup
+
+' NonConformLoadSchedule inherits from SeasonDayTypeSchedule
+class NonConformLoadSchedule   {
+}
+
+SeasonDayTypeSchedule <|-- NonConformLoadSchedule
+NonConformLoadSchedule "+NonConformLoadSchedules 0..*" --o "+NonConformLoadGroup 1" NonConformLoadGroup
+
+' NonlinearShuntCompensator inherits from ShuntCompensator
+class NonlinearShuntCompensator   {
+}
+
+ShuntCompensator <|-- NonlinearShuntCompensator
+
+' NonlinearShuntCompensatorPoint
+class NonlinearShuntCompensatorPoint   {
+   +b : Susceptance [1]
+   +g : Conductance [1]
+   +sectionNumber : integer [1]
+}
+
+NonlinearShuntCompensatorPoint "+NonlinearShuntCompensatorPoints 0..*" --o "+NonlinearShuntCompensator 1" NonlinearShuntCompensator
+
+' NuclearGeneratingUnit inherits from GeneratingUnit
+class NuclearGeneratingUnit   {
+}
+
+GeneratingUnit <|-- NuclearGeneratingUnit
+
+' OperationalLimit inherits from IdentifiedObject
+abstract class OperationalLimit  <<abstract>> {
+}
+
+IdentifiedObject <|-- OperationalLimit
+OperationalLimit "+OperationalLimitValue 0..*" --o "+OperationalLimitSet 1" OperationalLimitSet
+OperationalLimit "+OperationalLimit 0..*" --> "+OperationalLimitType 1" OperationalLimitType
+
+' OperationalLimitSet inherits from IdentifiedObject
+class OperationalLimitSet   {
+}
+
+IdentifiedObject <|-- OperationalLimitSet
+OperationalLimitSet "+OperationalLimitSet 0..*" --> "+Equipment 0..1" Equipment
+OperationalLimitSet "+OperationalLimitSet 0..*" --> "+Terminal 1" ACDCTerminal
+
+' OperationalLimitType inherits from IdentifiedObject
+class OperationalLimitType   {
+   +acceptableDuration : Seconds [0..1]
+   +direction : OperationalLimitDirectionKind [1]
+   +isInfiniteDuration : boolean [1]
+   +<<ShadowExtension,European>> kind : LimitKind [1]
+}
+
+IdentifiedObject <|-- OperationalLimitType
+
+' PetersenCoil inherits from EarthFaultCompensator
+class PetersenCoil   {
+}
+
+EarthFaultCompensator <|-- PetersenCoil
+
+' PhaseTapChanger inherits from TapChanger
+abstract class PhaseTapChanger  <<abstract>> {
+}
+
+TapChanger <|-- PhaseTapChanger
+PhaseTapChanger "+PhaseTapChanger 0..1" --> "+TransformerEnd 1" TransformerEnd
+
+' PhaseTapChangerAsymmetrical inherits from PhaseTapChangerNonLinear
+class PhaseTapChangerAsymmetrical   {
+   +windingConnectionAngle : AngleDegrees [1]
+}
+
+PhaseTapChangerNonLinear <|-- PhaseTapChangerAsymmetrical
+
+' PhaseTapChangerLinear inherits from PhaseTapChanger
+class PhaseTapChangerLinear   {
+   +stepPhaseShiftIncrement : AngleDegrees [1]
+   +xMax : Reactance [1]
+   +<<deprecated>> xMin : Reactance [0..1]
+}
+
+PhaseTapChanger <|-- PhaseTapChangerLinear
+
+' PhaseTapChangerNonLinear inherits from PhaseTapChanger
+abstract class PhaseTapChangerNonLinear  <<abstract>> {
+   +voltageStepIncrement : PerCent [1]
+   +xMax : Reactance [1]
+   +<<deprecated>> xMin : Reactance [0..1]
+}
+
+PhaseTapChanger <|-- PhaseTapChangerNonLinear
+
+' PhaseTapChangerSymmetrical inherits from PhaseTapChangerNonLinear
+class PhaseTapChangerSymmetrical   {
+}
+
+PhaseTapChangerNonLinear <|-- PhaseTapChangerSymmetrical
+
+' PhaseTapChangerTable inherits from IdentifiedObject
+class PhaseTapChangerTable   {
+}
+
+IdentifiedObject <|-- PhaseTapChangerTable
+
+' PhaseTapChangerTablePoint inherits from TapChangerTablePoint
+class PhaseTapChangerTablePoint   {
+   +angle : AngleDegrees [1]
+}
+
+TapChangerTablePoint <|-- PhaseTapChangerTablePoint
+PhaseTapChangerTablePoint "+PhaseTapChangerTablePoint 0..*" --> "+PhaseTapChangerTable 1" PhaseTapChangerTable
+
+' PhaseTapChangerTabular inherits from PhaseTapChanger
+class PhaseTapChangerTabular   {
+}
+
+PhaseTapChanger <|-- PhaseTapChangerTabular
+PhaseTapChangerTabular "+PhaseTapChangerTabular 0..*" --> "+PhaseTapChangerTable 1" PhaseTapChangerTable
+
+' PhotoVoltaicUnit inherits from PowerElectronicsUnit
+class PhotoVoltaicUnit   {
+}
+
+PowerElectronicsUnit <|-- PhotoVoltaicUnit
+
+' PostLineSensor inherits from Sensor
+class PostLineSensor   {
+}
+
+Sensor <|-- PostLineSensor
+
+' PotentialTransformer inherits from Sensor
+class PotentialTransformer   {
+}
+
+Sensor <|-- PotentialTransformer
+
+' PowerElectronicsConnection inherits from RegulatingCondEq
+class PowerElectronicsConnection   {
+   +maxQ : ReactivePower [0..1]
+   +minQ : ReactivePower [0..1]
+   +ratedS : ApparentPower [0..1]
+   +ratedU : Voltage [0..1]
+}
+
+RegulatingCondEq <|-- PowerElectronicsConnection
+PowerElectronicsConnection "+PowerElectronicsConnection 0..1" --> "+PowerElectronicsUnit 0..*" PowerElectronicsUnit
+
+' PowerElectronicsUnit inherits from Equipment
+abstract class PowerElectronicsUnit  <<abstract>> {
+   +maxP : ActivePower [0..1]
+   +minP : ActivePower [0..1]
+}
+
+Equipment <|-- PowerElectronicsUnit
+
+' PowerElectronicsWindUnit inherits from PowerElectronicsUnit
+class PowerElectronicsWindUnit   {
+}
+
+PowerElectronicsUnit <|-- PowerElectronicsWindUnit
+
+' PowerSystemResource inherits from IdentifiedObject
+abstract class PowerSystemResource  <<abstract>> {
+}
+
+IdentifiedObject <|-- PowerSystemResource
+
+' PowerTransformer inherits from ConductingEquipment
+class PowerTransformer   {
+}
+
+ConductingEquipment <|-- PowerTransformer
+
+' PowerTransformerEnd inherits from TransformerEnd
+class PowerTransformerEnd   {
+   +b : Susceptance [1]
+   +connectionKind : WindingConnection [1]
+   +g : Conductance [1]
+   +r : Resistance [1]
+   +ratedS : ApparentPower [1]
+   +ratedU : Voltage [1]
+   +x : Reactance [1]
+}
+
+TransformerEnd <|-- PowerTransformerEnd
+PowerTransformerEnd "+PowerTransformerEnd 0..*" --> "+PowerTransformer 1" PowerTransformer
+
+' ProtectedSwitch inherits from Switch
+abstract class ProtectedSwitch  <<abstract>> {
+}
+
+Switch <|-- ProtectedSwitch
+
+' RatioTapChanger inherits from TapChanger
+class RatioTapChanger   {
+   +stepVoltageIncrement : PerCent [1]
+}
+
+TapChanger <|-- RatioTapChanger
+RatioTapChanger "+RatioTapChanger 0..*" --> "+RatioTapChangerTable 0..1" RatioTapChangerTable
+RatioTapChanger "+RatioTapChanger 0..1" --> "+TransformerEnd 1" TransformerEnd
+
+' RatioTapChangerTable inherits from IdentifiedObject
+class RatioTapChangerTable   {
+}
+
+IdentifiedObject <|-- RatioTapChangerTable
+
+' RatioTapChangerTablePoint inherits from TapChangerTablePoint
+class RatioTapChangerTablePoint   {
+}
+
+TapChangerTablePoint <|-- RatioTapChangerTablePoint
+RatioTapChangerTablePoint "+RatioTapChangerTablePoint 0..*" --> "+RatioTapChangerTable 1" RatioTapChangerTable
+
+' ReactiveCapabilityCurve inherits from Curve
+class ReactiveCapabilityCurve   {
+}
+
+Curve <|-- ReactiveCapabilityCurve
+
+' RegularIntervalSchedule inherits from BasicIntervalSchedule
+abstract class RegularIntervalSchedule  <<abstract>> {
+   +endTime : dateTime [1]
+   +timeStep : Seconds [1]
+}
+
+BasicIntervalSchedule <|-- RegularIntervalSchedule
+
+' RegularTimePoint
+class RegularTimePoint   {
+   +sequenceNumber : integer [1]
+   +value1 : float [1]
+   +value2 : float [0..1]
+}
+
+RegularTimePoint "+TimePoints 0..*" --o "+IntervalSchedule 1" RegularIntervalSchedule
+
+' RegulatingCondEq inherits from EnergyConnection
+abstract class RegulatingCondEq  <<abstract>> {
+}
+
+EnergyConnection <|-- RegulatingCondEq
+RegulatingCondEq "+RegulatingCondEq 0..*" --> "+RegulatingControl 0..1" RegulatingControl
+
+' RegulatingControl inherits from PowerSystemResource
+class RegulatingControl   {
+   +mode : RegulatingControlModeKind [1]
+}
+
+PowerSystemResource <|-- RegulatingControl
+RegulatingControl "+RegulatingControl 0..*" --> "+Terminal 1" Terminal
+
+' RegulationSchedule inherits from SeasonDayTypeSchedule
+class RegulationSchedule   {
+}
+
+SeasonDayTypeSchedule <|-- RegulationSchedule
+RegulationSchedule "+RegulationSchedule 0..*" --> "+RegulatingControl 1" RegulatingControl
+
+' ReportingGroup inherits from IdentifiedObject
+class ReportingGroup   {
+}
+
+IdentifiedObject <|-- ReportingGroup
+
+' RotatingMachine inherits from RegulatingCondEq
+abstract class RotatingMachine  <<abstract>> {
+   +ratedPowerFactor : float [0..1]
+   +ratedS : ApparentPower [0..1]
+   +ratedU : Voltage [0..1]
+}
+
+RegulatingCondEq <|-- RotatingMachine
+RotatingMachine "+RotatingMachine 0..*" --> "+GeneratingUnit 0..1" GeneratingUnit
+
+' Season inherits from IdentifiedObject
+class Season   {
+   +endDate : gMonthDay [1]
+   +startDate : gMonthDay [1]
+}
+
+IdentifiedObject <|-- Season
+
+' SeasonDayTypeSchedule inherits from RegularIntervalSchedule
+abstract class SeasonDayTypeSchedule  <<abstract>> {
+}
+
+RegularIntervalSchedule <|-- SeasonDayTypeSchedule
+SeasonDayTypeSchedule "+SeasonDayTypeSchedules 0..*" --> "+DayType 1" DayType
+SeasonDayTypeSchedule "+SeasonDayTypeSchedules 0..*" --> "+Season 1" Season
+
+' Sensor inherits from AuxiliaryEquipment
+abstract class Sensor  <<abstract>> {
+}
+
+AuxiliaryEquipment <|-- Sensor
+
+' SeriesCompensator inherits from ConductingEquipment
+class SeriesCompensator   {
+   +r : Resistance [1]
+   +x : Reactance [1]
+}
+
+ConductingEquipment <|-- SeriesCompensator
+
+' ShuntCompensator inherits from RegulatingCondEq
+abstract class ShuntCompensator  <<abstract>> {
+   +aVRDelay : Seconds [0..1]
+   +grounded : boolean [0..1]
+   +maximumSections : integer [1]
+   +nomU : Voltage [1]
+   +normalSections : integer [1]
+   +voltageSensitivity : VoltagePerReactivePower [0..1]
+}
+
+RegulatingCondEq <|-- ShuntCompensator
+
+' SolarGeneratingUnit inherits from GeneratingUnit
+class SolarGeneratingUnit   {
+}
+
+GeneratingUnit <|-- SolarGeneratingUnit
+SolarGeneratingUnit "+SolarGeneratingUnits 0..*" --> "+SolarPowerPlant 0..1" SolarPowerPlant : <<European>>
+
+' SolarPowerPlant inherits from PowerSystemResource
+class SolarPowerPlant <<European>>  {
+}
+
+PowerSystemResource <|-- SolarPowerPlant
+
+' StaticVarCompensator inherits from RegulatingCondEq
+class StaticVarCompensator   {
+   +capacitiveRating : Reactance [1]
+   +inductiveRating : Reactance [1]
+   +slope : VoltagePerReactivePower [1]
+   +<<deprecated>> sVCControlMode : SVCControlMode [0..1]
+   +<<deprecated>> voltageSetPoint : Voltage [0..1]
+}
+
+RegulatingCondEq <|-- StaticVarCompensator
+
+' StationSupply inherits from EnergyConsumer
+class StationSupply   {
+}
+
+EnergyConsumer <|-- StationSupply
+
+' SubGeographicalRegion inherits from IdentifiedObject
+class SubGeographicalRegion   {
+}
+
+IdentifiedObject <|-- SubGeographicalRegion
+SubGeographicalRegion "+Regions 0..*" --o "+Region 1" GeographicalRegion
+
+' SubLoadArea inherits from EnergyArea
+class SubLoadArea   {
+}
+
+EnergyArea <|-- SubLoadArea
+SubLoadArea "+SubLoadAreas 0..*" --o "+LoadArea 1" LoadArea
+
+' Substation inherits from EquipmentContainer
+class Substation   {
+}
+
+EquipmentContainer <|-- Substation
+Substation "+Substations 0..*" --o "+Region 1" SubGeographicalRegion
+
+' SurgeArrester inherits from AuxiliaryEquipment
+class SurgeArrester   {
+}
+
+AuxiliaryEquipment <|-- SurgeArrester
+
+' Switch inherits from ConductingEquipment
+class Switch   {
+   +normalOpen : boolean [1]
+   +ratedCurrent : CurrentFlow [0..1]
+   +retained : boolean [1]
+}
+
+ConductingEquipment <|-- Switch
+
+' SwitchSchedule inherits from SeasonDayTypeSchedule
+class SwitchSchedule   {
+}
+
+SeasonDayTypeSchedule <|-- SwitchSchedule
+SwitchSchedule "+SwitchSchedules 0..*" --> "+Switch 1" Switch
+
+' SynchronousMachine inherits from RotatingMachine
+class SynchronousMachine   {
+   +maxQ : ReactivePower [0..1]
+   +minQ : ReactivePower [0..1]
+   +qPercent : PerCent [0..1]
+   +type : SynchronousMachineKind [1]
+}
+
+RotatingMachine <|-- SynchronousMachine
+SynchronousMachine "+InitiallyUsedBySynchronousMachines 0..*" --> "+InitialReactiveCapabilityCurve 0..1" ReactiveCapabilityCurve
+
+' TapChanger inherits from PowerSystemResource
+abstract class TapChanger  <<abstract>> {
+   +highStep : integer [1]
+   +lowStep : integer [1]
+   +ltcFlag : boolean [1]
+   +neutralStep : integer [1]
+   +neutralU : Voltage [1]
+   +normalStep : integer [1]
+}
+
+PowerSystemResource <|-- TapChanger
+TapChanger "+TapChanger 0..*" --> "+TapChangerControl 0..1" TapChangerControl
+
+' TapChangerControl inherits from RegulatingControl
+class TapChangerControl   {
+}
+
+RegulatingControl <|-- TapChangerControl
+
+' TapChangerTablePoint
+abstract class TapChangerTablePoint  <<abstract>> {
+   +b : PerCent [0..1]
+   +g : PerCent [0..1]
+   +r : PerCent [0..1]
+   +ratio : float [0..1]
+   +step : integer [1]
+   +x : PerCent [0..1]
+}
+
+
+' TapSchedule inherits from SeasonDayTypeSchedule
+class TapSchedule   {
+}
+
+SeasonDayTypeSchedule <|-- TapSchedule
+TapSchedule "+TapSchedules 0..*" --> "+TapChanger 1" TapChanger
+
+' Terminal inherits from ACDCTerminal
+class Terminal   {
+   +phases : PhaseCode [0..1]
+}
+
+ACDCTerminal <|-- Terminal
+Terminal "+Terminals 0..*" --> "+ConductingEquipment 0..1" ConductingEquipment
+Terminal "+Terminals 0..*" --> "+ConnectivityNode 0..1" ConnectivityNode
+
+' ThermalGeneratingUnit inherits from GeneratingUnit
+class ThermalGeneratingUnit   {
+}
+
+GeneratingUnit <|-- ThermalGeneratingUnit
+ThermalGeneratingUnit "+ThermalGeneratingUnit 0..1" --> "+CAESPlant 0..1" CAESPlant
+ThermalGeneratingUnit "+ThermalGeneratingUnits 0..*" --> "+CogenerationPlant 0..1" CogenerationPlant
+ThermalGeneratingUnit "+ThermalGeneratingUnits 0..*" --> "+CombinedCyclePlant 0..1" CombinedCyclePlant
+
+' TieFlow inherits from IdentifiedObject
+class TieFlow   {
+   +positiveFlowIn : boolean [1]
+}
+
+IdentifiedObject <|-- TieFlow
+TieFlow "+TieFlow 0..*" --o "+ControlArea 1" ControlArea
+TieFlow "+TieFlow 0..*" --> "+Terminal 1" Terminal
+
+' TransformerEnd inherits from IdentifiedObject
+abstract class TransformerEnd  <<abstract>> {
+   +endNumber : integer [1]
+}
+
+IdentifiedObject <|-- TransformerEnd
+TransformerEnd "+TransformerEnds 0..*" --> "+BaseVoltage 1" BaseVoltage
+TransformerEnd "+TransformerEnd 0..*" --> "+Terminal 1" Terminal
+
+' VoltageLevel inherits from EquipmentContainer
+class VoltageLevel   {
+   +highVoltageLimit : Voltage [0..1]
+   +lowVoltageLimit : Voltage [0..1]
+}
+
+EquipmentContainer <|-- VoltageLevel
+VoltageLevel "+VoltageLevel 0..*" --> "+BaseVoltage 1" BaseVoltage
+VoltageLevel "+VoltageLevels 0..*" --o "+Substation 1" Substation
+
+' VoltageLimit inherits from OperationalLimit
+class VoltageLimit   {
+   +normalValue : Voltage [1]
+}
+
+OperationalLimit <|-- VoltageLimit
+
+' VsCapabilityCurve inherits from Curve
+class VsCapabilityCurve   {
+}
+
+Curve <|-- VsCapabilityCurve
+
+' VsConverter inherits from ACDCConverter
+class VsConverter   {
+   +maxModulationIndex : float [0..1]
+}
+
+ACDCConverter <|-- VsConverter
+VsConverter "+VsConverterDCSides 0..*" --> "+CapabilityCurve 0..1" VsCapabilityCurve
+
+' WaveTrap inherits from AuxiliaryEquipment
+class WaveTrap   {
+}
+
+AuxiliaryEquipment <|-- WaveTrap
+
+' WindGeneratingUnit inherits from GeneratingUnit
+class WindGeneratingUnit   {
+   +windGenUnitType : WindGenUnitKind [1]
+}
+
+GeneratingUnit <|-- WindGeneratingUnit
+WindGeneratingUnit "+WindGeneratingUnits 0..*" --> "+WindPowerPlant 0..1" WindPowerPlant : <<European>>
+
+' WindPowerPlant inherits from PowerSystemResource
+class WindPowerPlant <<European>>  {
+}
+
+PowerSystemResource <|-- WindPowerPlant
+
+@enduml
