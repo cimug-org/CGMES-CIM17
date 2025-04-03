@@ -22,16 +22,11 @@
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:msg="http://langdale.com.au/2005/Message#"
+    xmlns="http://ucaiug.org/ns/CGMES/Dynamics-EU/1.0#"
     xmlns:uml="http://langdale.com.au/2005/UML#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns="http://iec.ch/TC57/ns/CIM/Dynamics-EU/1.0#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-  xml:base="http://iec.ch/TC57/ns/CIM/Dynamics-EU/1.0" > 
-  <rdf:Description rdf:about="">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:label>Dynamics</rdfs:label>
-    <owl:imports rdf:resource="http://iec.ch/TC57/CIM100"/>
-  </rdf:Description>
+  xml:base="http://ucaiug.org/ns/CGMES/Dynamics-EU/1.0" > 
   <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-rdfs.adoc">
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
   </rdf:Description>
@@ -43,5 +38,10 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#rdfs-t2b.puml">
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>Dynamics</rdfs:label>
+    <owl:imports rdf:resource="http://iec.ch/TC57/CIM100"/>
   </rdf:Description>
 </rdf:RDF>
