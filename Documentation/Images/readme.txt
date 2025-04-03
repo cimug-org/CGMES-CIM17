@@ -1,1 +1,0 @@
-Images are located here.

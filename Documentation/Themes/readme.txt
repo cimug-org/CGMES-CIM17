@@ -1,1 +1,0 @@
-Any customized Asciidoc theme files (either *.yml for PDF output or *.css for HTML) should be located here.
