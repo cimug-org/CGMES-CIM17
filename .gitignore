@@ -1,6 +1,12 @@
 # Compiled class file
 *.class
 
+# Generated CIMTool artifacts
+**/Profiles/*.adoc
+**/Profiles/*.puml
+**/Profiles/*.rdfs
+
+
 # Log file
 *.log
 
