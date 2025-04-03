@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<!-- 
+
+	Copyright 2025 UCAIug
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	https://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	
+	See the License for the specific language governing permissions and
+	limitations under the License.
+
+-->
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:msg="http://langdale.com.au/2005/Message#"
+    xmlns="http://iec.ch/TC57/ns/CIM/Topology-EU/3.0#"
+    xmlns:uml="http://langdale.com.au/2005/UML#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xml:base="http://iec.ch/TC57/ns/CIM/Topology-EU/3.0" > 
+  <rdf:Description rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ff5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ff6"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#IdentifiedObject.mRID"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ff6">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>mRID</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ff8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#DCTopologicalNode.DCEquipmentContainer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ffb">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ffc"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#IdentifiedObject.description"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ffc">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>description</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ffe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7fff"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#IdentifiedObject.name"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7fff">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>name</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X9584438Xa3X156941b0a64Xa3X-7ffe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#DCNode.DCTopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X9584438Xa3X156941b0a64Xa3X-7fff">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#ConnectivityNode.TopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ff6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ff7"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#TopologicalNode.ReportingGroup"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ff7">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ReportingGroup</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#ReportingGroup"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ff8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#TopologicalNode.ConnectivityNodeContainer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ff9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ffa"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#TopologicalNode.ConnectivityNodeContainer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ffa">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ConnectivityNodeContainer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#ConnectivityNodeContainer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ffb">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#TopologicalNode.BaseVoltage"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ffc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ffd"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#TopologicalNode.BaseVoltage"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ffd">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>BaseVoltage</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#BaseVoltage"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ffe">
+    <rdf:first rdf:resource="#TopologicalNode"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7fff">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#IdentifiedObject.mRID"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="XDCBaseTerminal.DCTopologicalNode_max_cardinality">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#DCBaseTerminal.DCTopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="XDCBaseTerminal.DCTopologicalNode_min_cardinality">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#DCBaseTerminal.DCTopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="XDCBaseTerminal.DCTopologicalNode_property">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>DCTopologicalNode</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#DCTopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="XDCBaseTerminal.DCTopologicalNode_property_restriction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="XDCBaseTerminal.DCTopologicalNode_property"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#DCBaseTerminal.DCTopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="XDCTopologicalNode.DCEquipmentContainer_property">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>DCEquipmentContainer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#DCEquipmentContainer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="XDCTopologicalNode.DCEquipmentContainer_property_restriction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="XDCTopologicalNode.DCEquipmentContainer_property"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#DCTopologicalNode.DCEquipmentContainer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="XTerminal.TopologicalNode_max_cardinality">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#Terminal.TopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="XTerminal.TopologicalNode_property">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TopologicalNode</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#TopologicalNode"/>
+    <owl:unionOf rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ffe"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="XTerminal.TopologicalNode_property_restriction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="XTerminal.TopologicalNode_property"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#Terminal.TopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7298ab3eXa3X15693cd04bcXa3X-7ff2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X7298ab3eXa3X15693cd04bcXa3X-7ff3"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#DCNode.DCTopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7298ab3eXa3X15693cd04bcXa3X-7ff3">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>DCTopologicalNode</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#DCTopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7298ab3eXa3X15693cd04bcXa3X-7ff5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X7298ab3eXa3X15693cd04bcXa3X-7ff6"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100#ConnectivityNode.TopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7298ab3eXa3X15693cd04bcXa3X-7ff6">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TopologicalNode</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#TopologicalNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:comment xml:space="preserve"></rdfs:comment>
+    <rdfs:label>Topology</rdfs:label>
+    <owl:imports rdf:resource="http://iec.ch/TC57/CIM100"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACDCConverterDCTerminal">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">ACDCConverterDCTerminal</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#ACDCConverterDCTerminal"/>
+    <rdfs:subClassOf rdf:resource="#DCBaseTerminal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACDCTerminal">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#ACDCTerminal"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#BaseVoltage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#BaseVoltage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ConnectivityNode">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X33X9584438Xa3X156941b0a64Xa3X-7fff"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X7298ab3eXa3X15693cd04bcXa3X-7ff5"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#ConnectivityNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ConnectivityNodeContainer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#ConnectivityNodeContainer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DCBaseTerminal">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">DCBaseTerminal</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="XDCBaseTerminal.DCTopologicalNode_max_cardinality"/>
+    <rdfs:subClassOf rdf:nodeID="XDCBaseTerminal.DCTopologicalNode_min_cardinality"/>
+    <rdfs:subClassOf rdf:nodeID="XDCBaseTerminal.DCTopologicalNode_property_restriction"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#DCBaseTerminal"/>
+    <rdfs:subClassOf rdf:resource="#ACDCTerminal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DCEquipmentContainer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#DCEquipmentContainer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DCNode">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X33X9584438Xa3X156941b0a64Xa3X-7ffe"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X7298ab3eXa3X15693cd04bcXa3X-7ff2"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#DCNode"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DCTerminal">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">DCTerminal</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#DCTerminal"/>
+    <rdfs:subClassOf rdf:resource="#DCBaseTerminal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DCTopologicalNode">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">DCTopologicalNode</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ff8"/>
+    <rdfs:subClassOf rdf:nodeID="XDCTopologicalNode.DCEquipmentContainer_property_restriction"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#DCTopologicalNode"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#IdentifiedObject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ff5"/>
+    <rdfs:subClassOf rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ffb"/>
+    <rdfs:subClassOf rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ffe"/>
+    <rdfs:subClassOf rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7fff"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Core">
+    <rdfs:label xml:lang="en">Core</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_DC">
+    <rdfs:label xml:lang="en">DC</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Topology">
+    <rdfs:label xml:lang="en">Topology</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_TopologyProfile">
+    <rdfs:label xml:lang="en">TopologyProfile</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ReportingGroup">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#ReportingGroup"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Terminal">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Terminal</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="XTerminal.TopologicalNode_max_cardinality"/>
+    <rdfs:subClassOf rdf:nodeID="XTerminal.TopologicalNode_property_restriction"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#Terminal"/>
+    <rdfs:subClassOf rdf:resource="#ACDCTerminal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TopologicalNode">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ff6"/>
+    <rdfs:subClassOf rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ff8"/>
+    <rdfs:subClassOf rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ff9"/>
+    <rdfs:subClassOf rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ffb"/>
+    <rdfs:subClassOf rdf:nodeID="X43X528012aXa3X18cdacdfa36Xa3X-7ffc"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#TopologicalNode"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-rdfs.adoc">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#inline-rdfs.adoc">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#legacy-augmented-rdfs">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#legacy-augmented.rdfs">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#legacy.rdfs">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#rdfs-2020.rdfs">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#rdfs-t2b.puml">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+</rdf:RDF>
