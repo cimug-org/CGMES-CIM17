@@ -27,6 +27,30 @@
     xmlns="http://ucaiug.org/ns/CGMES/Topology-EU/3.0#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://ucaiug.org/ns/CGMES/Topology-EU/3.0" > 
+  <rdf:Description rdf:nodeID="X63Xd7a0c0fXa3X196b0ef4c66Xa3X-7ffc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X63Xd7a0c0fXa3X196b0ef4c66Xa3X-7ffd"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100-European#IdentifiedObject.shortName"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63Xd7a0c0fXa3X196b0ef4c66Xa3X-7ffd">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#european"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>shortName</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63Xd7a0c0fXa3X196b0ef4c66Xa3X-7ffe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X63Xd7a0c0fXa3X196b0ef4c66Xa3X-7fff"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM100-European#IdentifiedObject.energyIdentCodeEic"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63Xd7a0c0fXa3X196b0ef4c66Xa3X-7fff">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#european"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>energyIdentCodeEic</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ff5">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ff6"/>
@@ -198,9 +222,6 @@
     <rdfs:label>TopologicalNode</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#TopologicalNode"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-rdfs.adoc">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#inline-rdfs.adoc">
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
   </rdf:Description>
@@ -295,6 +316,8 @@
   </rdf:Description>
   <rdf:Description rdf:about="#IdentifiedObject">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X63Xd7a0c0fXa3X196b0ef4c66Xa3X-7ffc"/>
+    <rdfs:subClassOf rdf:nodeID="X63Xd7a0c0fXa3X196b0ef4c66Xa3X-7ffe"/>
     <rdfs:subClassOf rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ff5"/>
     <rdfs:subClassOf rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ffb"/>
     <rdfs:subClassOf rdf:nodeID="X13X89a8baXa3X14bea4411a8Xa3X-7ffe"/>

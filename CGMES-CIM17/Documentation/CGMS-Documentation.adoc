@@ -1,0 +1,71 @@
+//==================================================================
+// Following is the "header" attributes defined for this asciidoc
+//==================================================================
+:stem: latexmath
+//
+//----- Directory definitions used throughout the doc -----
+:profilesdir: {docdir}/Profiles
+:includedir: {docdir}/Documentation/Includes
+:codedir: {docdir}/Documentation/Code
+//
+//----------- Styles definitions for PDF output -----------
+// From pragmatic testing PDF themes must be declared before the 
+// title in the document or else will not register correctly.
+:pdf-themesdir: {docdir}/Documentation/Themes
+:pdf-theme: sample-adoc
+:stylesdir: {docdir}/Documentation/Styles
+:stylesheet: sample-adoc.css
+//
+//------ General document settings ------
+:doctype: book
+:reproducible:
+:icons: font
+:sectnums:
+:sectnumlevels: 4
+:xrefstyle: short
+//==================================================================
+//
+
+= CGMES Profiles Guide
+
+// TOC must appear after the title of the doc (above)
+:toc-placement: preamble
+:toc-title: Table of Contents
+:toc: left
+:toclevels: 6
+
+// Sections included inline
+include::{includedir}/introduction.adoc[]
+
+include::{includedir}/cgmes-overview.adoc[]
+
+include::{includedir}/cim-grid-models-exchange.adoc[]
+
+include::{includedir}/cpsm-introduction.adoc[]
+
+include::{profilesdir}/CGMES-CoreEquipment.inline-rdfs.adoc[]
+
+include::{profilesdir}/CGMES-Operation.inline-rdfs.adoc[]
+
+include::{profilesdir}/CGMES-ShortCircuit.inline-rdfs.adoc[]
+
+include::{includedir}/cpsm-na-introduction.adoc[]
+
+include::{profilesdir}/CGMES-SteadyStateHypothesis.inline-rdfs.adoc[]
+
+include::{profilesdir}/CGMES-Topology.inline-rdfs.adoc[]
+
+include::{profilesdir}/CGMES-StateVariables.inline-rdfs.adoc[]
+
+include::{includedir}/cgmes-other-profiles.adoc[]
+
+include::{profilesdir}/CGMES-EquipmentBoundary.inline-rdfs.adoc[]
+
+include::{profilesdir}/CGMES-DiagramLayout.inline-rdfs.adoc[]
+
+include::{profilesdir}/CGMES-GeographicalLocation.inline-rdfs.adoc[]
+
+include::{profilesdir}/CGMES-Dynamics.inline-rdfs.adoc[]
+
+include::{includedir}/conclusion.adoc[]
+

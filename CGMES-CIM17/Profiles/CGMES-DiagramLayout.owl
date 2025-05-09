@@ -420,9 +420,6 @@
   <rdf:Description rdf:about="http://iec.ch/TC57/CIM100#OrientationKind.positive">
     <rdfs:label>positive</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-rdfs.adoc">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#inline-rdfs.adoc">
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
   </rdf:Description>
@@ -433,6 +430,7 @@
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
   </rdf:Description>
   <rdf:Description rdf:about="">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#hideondiagrams"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
     <rdfs:label>DiagramLayout</rdfs:label>
     <owl:imports rdf:resource="http://iec.ch/TC57/CIM100"/>

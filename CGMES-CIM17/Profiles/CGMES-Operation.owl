@@ -1268,9 +1268,6 @@
   <rdf:Description rdf:about="http://iec.ch/TC57/CIM100#Validity.QUESTIONABLE">
     <rdfs:label>QUESTIONABLE</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-rdfs.adoc">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#inline-rdfs.adoc">
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
   </rdf:Description>

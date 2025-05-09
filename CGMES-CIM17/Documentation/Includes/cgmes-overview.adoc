@@ -1,0 +1,14 @@
+
+== Common Grid Model Exchange Specification (CGMES)
+
+The Common Grid Model Exchange Specification (CGMES) is an IEC international standard (IS) based on the IEC Common Information Model (CIM) family of standards.​ It was developed to meet necessary requirements for TSO data exchanges in the areas of system development and system operation (e.g. TYNDP and network codes) and was initially published in December 2013 a a technical specification and later published as an IS in 2021.
+
+The CGMES will be used as a baseline exchange specification for the implementation of the Common Grid Model (CGM) methodologies (according to the requirements for the implementation of various network codes; expected by 2015). The CGMES will be applied by applications dealing with power system data management, as well as applicat​ions supporting the following analyses:
+
+* Load flow and contingency analyses,
+* Short circuit calculations,
+* Market information and transparency,
+* Dapacity calculation for capacity allocation and congestion management, and
+* Dynamic security assessment.
+
+The conformity of the applications used for operational and system development exchanges with the CGMES is crucial for the needed interoperability of these applications. ENTSO-E therefore developed and approved the CGMES Conformity Assessment Framework as the guiding principles for assessing applications’ CGMES conformity. Based on those principles, ENTSO-E operates a CGMES Conformity Assessment Process in order to ensure that the CGMES is properly implemented by suppliers of the applications used by TSOs. Details on the conformity testing are available here.

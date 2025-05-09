@@ -27,9 +27,6 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://ucaiug.org/ns/CGMES/Dynamics-EU/1.0" > 
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-rdfs.adoc">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#inline-rdfs.adoc">
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
   </rdf:Description>

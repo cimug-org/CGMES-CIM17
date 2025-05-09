@@ -1349,9 +1349,6 @@
     <rdfs:label>inService</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-rdfs.adoc">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#inline-rdfs.adoc">
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
   </rdf:Description>
@@ -1372,7 +1369,6 @@
   </rdf:Description>
   <rdf:Description rdf:about="">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:comment xml:space="preserve"></rdfs:comment>
     <rdfs:label>SteadyStateHypothesis</rdfs:label>
     <owl:imports rdf:resource="http://iec.ch/TC57/CIM100"/>
   </rdf:Description>

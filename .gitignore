@@ -4,8 +4,28 @@
 # Generated CIMTool artifacts
 **/Profiles/*.adoc
 **/Profiles/*.puml
+**/Profiles/*.xml
+**/Profiles/*.xsd
+**/Profiles/*.ttl
+**/Profiles/*.rtf
+**/Profiles/*.html
 **/Profiles/*.rdfs
-
+**/Profiles/*.legacy-rdfs
+**/Profiles/*.legacy-rdfs-augmented
+**/Profiles/*.simple-owl
+**/Profiles/*.simple-owl-augmented
+**/Profiles/*.simple-flat-owl
+**/Profiles/*.simple-flat-owl-augmented
+**/Profiles/*.linkml.yaml
+**/Profiles/*.sql
+**/Profiles/*.cs
+**/Profiles/*.java
+**/Profiles/*.scala
+**/Profiles/*.py
+**/Profiles/*.ecore
+**/Profiles/*.json
+**/Includes/testing.adoc
+*.bkp
 
 # Log file
 *.log

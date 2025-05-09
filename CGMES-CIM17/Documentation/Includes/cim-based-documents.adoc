@@ -1,0 +1,76 @@
+
+== Common Grid Model Exchange Standard (CGMES) Library
+
+
+=== Common Information Model (CIM) and CIM based documents
+
+The following information has been sourced from ENTSO-E's publicly accessible https://www.entsoe.eu/data/cim/cim-for-grid-models-exchange[CGMES Library].
+
+
+==== Common Grid Model Exchange Standard (CGMES) v3.0
+
+The following standards can be purchased on the International Electrotechnical Committee (IEC) webstore. ENTSO-E cannot facilitate them.
+
+Main IEC Standards https://webstore.iec.ch/en/publication/63866[IEC IS 61970-600-1:2021] https://webstore.iec.ch/en/publication/63867[IEC IS 61970-600-2:2021]
+
+Other IEC dependent standards https://webstore.iec.ch/en/publication/25939[IEC 61970-552:2016] https://webstore.iec.ch/en/publication/74467[IEC 61970-301:2020+AMD1:2022] https://webstore.iec.ch/en/publication/29470[IEC 61970-302:2018]
+
+Other IEC relevant standards https://webstore.iec.ch/en/publication/31929[IEC 61970-457:2021] https://webstore.iec.ch/en/publication/64844[IEC 61970-452:2021] https://webstore.iec.ch/en/publication/64268[IEC 61970-453:2014+AMD1:2018 CSV] https://webstore.iec.ch/en/publication/68054[IEC 61970-456:2021] https://webstore.iec.ch/en/publication/25939[IEC 61970-552:2016]
+
+Test configurations, cases, and specifications https://www.entsoe.eu/data/cim/cim-conformity-and-interoperability#CGMES%20Conformity%20Assessment%20Scheme%20v3.0.2[Check CGMES Conformity Assessment Scheme v3 on the CIM Conformity and Interoperability]
+
+
+==== Dynamics: IEC 61970-302 and IEC 61970-457
+
+In 2024, the International Electrotechnical Commission (IEC) published new versions of the documents supporting the information exchange of models between software applications that perform analysis of the steady-state stability (small-signal stability) or transient stability of a power system.
+
+Both the Dynamics profile and the specification document were updated in the **IEC 61970-457:2024** and **IEC 61970-302:2024** respectively.
+
+These updates are not yet included as part of the CGMES series of standards.
+
+Find more information on the relevant IEC standards for CGMES refer to https://webstore.iec.ch/en/publication/68152[IEC 61970-302:2024] and https://webstore.iec.ch/en/publication/68910[IEC 61970-457:2024].
+
+
+==== Application Profiles Library
+
+All versions of machine understandable artifacts (RDFS, SHACL) for the Common Grid Model Exchange Standard (CGMES) and Network (NC) CGMES extensions.
+
+**Release 1.0.1** approved by the CIM WG on 25-Sep-2024.
+
+**Package:** https://www.entsoe.eu/Documents/CIM_documents/Grid_Model_CIM/APL/1.0.1/ApplicationProfilesLibrary-release1-0-1.zip[Application Profiles Library release 1.0.1]
+
+**Document:** https://www.entsoe.eu/Documents/CIM_documents/Grid_Model_CIM/APL/1.0.1/ApplicationProfilesLibrary_ReadMe_r1-0-1.pdf[ReadMe] https://www.entsoe.eu/Documents/CIM_documents/Grid_Model_CIM/APL/1.0.1/ApplicationProfilesLibrary_ReleaseNotes_Release%201-0-1.pdf[Release notes 1.0.1] https://www.entsoe.eu/Documents/CIM_documents/Grid_Model_CIM/APL/1.0.1/ReadMe.xlsx[ReadMe spreaadsheet] https://www.entsoe.eu/Documents/CIM_documents/Grid_Model_CIM/APL/1.0.1/CGMES_Constraints_Repository.xlsx[CGMES Constraints Repository]
+
+**Archive:** https://www.entsoe.eu/Documents/CIM_documents/Grid_Model_CIM/ApplicationProfilesLibrary-release1-0-0.zip[Application Profiles Library release 1.0.0] https://www.entsoe.eu/Documents/CIM_documents/Grid_Model_CIM/ReleaseNotes_Applications_Profile_Library_Release_1-0-0.pdf[Release notes 1.0.0]
+
+
+==== Boundary and Reference Data
+
+Version 1.0 (ICTC approved 10-May-2023)
+
+Profile Specification https://www.entsoe.eu/Documents/CIM_documents/Grid_Model_CIM/Boundary_and_reference_data_exchange_specification_v1.0.pdf[Boundary and Reference Data]
+
+
+==== Common Grid Model Exchange Standard (CGMES)
+
+International Standard Ed1 since 2021 (CGMES 3.0).
+
+Document https://webstore.iec.ch/publication/63866[Common Grid Model Exchange Standard (CGMES) - Structure and rules]
+
+Document https://webstore.iec.ch/publication/63867[Common Grid Model Exchange Standard (CGMES) - Exchange profiles specification]
+
+Other https://www.entsoe.eu/Documents/CIM_documents/Grid_Model_CIM/Diff_CGMESv24_CGMESv30.zip[Differences CGMESv24 and CGMESv30]
+
+Archive
+
+[%header,width=100%,cols="1a"]
+|===
+^| Archive 
+| https://webstore.iec.ch/en/publication/63866[TS Common Grid Model Exchange Specification (CGMES) - Structure and rules]
+| https://webstore.iec.ch/en/publication/63867[TS Common Grid Model Exchange Specification (CGMES) - Exchange profiles specification] 
+| ENTSO-E CGMES v2.4.14 
+| ENTSO-E CGMES v2.4.13 
+| ENTSO-E CGMES v2.4.12 
+| ENTSO-E CIM Profile 1
+|===
+

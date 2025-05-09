@@ -1,0 +1,17 @@
+
+== CIM Static Transmission Network Model Profiles
+
+**IEC 61970-452:2021** defines the subset of classes, class attributes, and associations from the CIM necessary to execute state estimation and power flow applications between control centres and/or control centre components, such as power systems applications.
+
+The North American Electric Reliability Council (NERC) Data Exchange Working Group (DEWG) Common Power System Modelling group (CPSM) produced the original data requirements, which are shown in Annex F. These requirements are based on prior industry practices for exchanging power system model data for use primarily in planning studies. However, the list of required data has been extended starting with the first edition of this standard to facilitate a model exchange that includes parameters common to breaker-oriented applications. Where necessary this document establishes conventions, shown in Clause 6, with which an XML data file must comply in order to be considered valid for exchange of models.
+
+The data exchange use cases which this standard is meant to support are described in Annex A. The idea of a modelling authority as the source responsible for the modeling of a given region is described in Annex B. The concept of a boundary between regions is explained in Annex C. Annex D explains the processing of multiple profiles such as the three profiles described in this standard. The use of different curve styles to define ReactiveCapabilityCurve-s is explained in Annex E.
+This document is intended for two distinct audiences, data producers and data recipients, and may be read from two perspectives.
+
+From the standpoint of model export software used by a data producer, this document describes a minimum subset of CIM classes, attributes, and associations which must be present in an XML formatted data file for model exchange. This document does not dictate how the network is modelled, however. It only dictates what classes, attributes, and associations are to be used to describe the source model as it exists.
+
+This fourth edition cancels and replaces the third edition published in 2017. This edition constitutes a technical revision. It is based on the **IEC 61970 UML version ‘IEC61970CIM17v40’, dated 2020-08-24.
+
+This edition includes the following significant technical changes with respect to the previous edition: footnote:[This overview is taken from the public abstract for the https://webstore.iec.ch/en/publication/64844[IEC 61970-452:2021] I.S.]
+
+a) The classes PowerElectronicsConnection, PowerElectronicsUnit and PowerElectronicsWindUnit are added to the Core Equipment profile.

@@ -1,0 +1,22 @@
+
+== Common Information Model (CIM) for Grid Models Exchange
+
+​​​The CIM for grid model exchange enables exchanges for the data necessary for regional or pan-European grid development studies, and for future processes related to network codes.
+
+Grid model exchange is a complex process covering a variety of use cases, which include the exchange of:
+
+* Equipment information, which contains power system equipment data; Topology information, which contains topology related information for the grid elements;
+
+* Information on power system state variables, which contains the results from initial load flow simulation of the system; and/or
+
+* Steady state hypothesis information, which is valid for newer standards and provides information on load and generation values as well as other input parameters necessary to perform load flow simulations.
+
+In addition, grid model exchange can benefit from information related to dynamics, diagram layout and geographical location for elements in the power system. These features were developed in the latest drafts of the ENTSO-E CIM standards to cover the specific business requirements of TSO grid model exchanges. ENTSO-E CIM standards for grid models exchange are based on the following existing or expected IEC CIM standards: footnote:[Example content from ENTSO-E public site https://www.entsoe.eu/digital/common-information-model/cim-for-grid-models-exchange/[CGMES Library]]
+
+* https://webstore.iec.ch/en/publication/74467[IEC 61970-301: Common Information Model (CIM) Base]
+* https://webstore.iec.ch/en/publication/68152[IEC 61970-302: Common Information Model (CIM) for Dynamics Specification]
+* https://webstore.iec.ch/en/publication/64844[IEC 61970-452: CIM Static Transmission Network Model Profiles]
+* https://webstore.iec.ch/en/publication/64268[IEC 61970-453: Diagram Layout Profile]
+* https://webstore.iec.ch/en/publication/68054[IEC 61970-456: Solved Power System State Profiles]
+* https://webstore.iec.ch/en/publication/68910[IEC 61970-457: Common Information Model (CIM) for Dynamics Profile]
+* https://webstore.iec.ch/en/publication/61452[IEC 61968-4: Application integration at electric utilities – System interfaces for distribution management - Part 4: Interfaces for records and asset management.]
