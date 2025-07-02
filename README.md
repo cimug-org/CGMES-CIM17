@@ -27,4 +27,4 @@ The CIM model is defined and maintained using UML. The source and point of maint
 
 ## License
 
-Distributed under the Apache 2.0 license. See [LICEN
+Distributed under the Apache 2.0 license.
