@@ -21,7 +21,7 @@ The CIM model is defined and maintained using UML. The source and point of maint
 
 ## Latest Release
 
-####  UCA CDPSM CIM17:
+#### CGMES CIM17:
   -   The latest **CGMES CIM17 CIMTool Project** ZIP archive of the complete project is available at...[CGMES-CIM17-CIMTool-Project.zip](TBD). The specific Enterprise Architect (EA) project file used in CIMTool for this release is based on version iec61970cim17v40 of transmission CIM and is made available along with the project under the `...\Schema folder`
   -   The latest **profiles-only** archive can be downloaded as a ZIP at [CGMES-CIM17-Profiles.zip](TBD).
 
