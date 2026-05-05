@@ -14,7 +14,7 @@ project:
       tool:merged_schema_path
               "" ;
       tool:self_heal_on_import
-              "false" .
+              "true" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-CoreEquipment.owl>
       tool:profile_envelope
