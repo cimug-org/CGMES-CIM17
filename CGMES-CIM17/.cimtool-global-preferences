@@ -15,7 +15,7 @@
       prefs:mapping_namespace
               "http://langdale.com.au/2010/schema-mapping#" ;
       prefs:merge_shadow_extensions
-              "false" ;
+              "true" ;
       prefs:plantuml_abstract_classes_color
               "#E8E8E8" ;
       prefs:plantuml_choices_color
@@ -45,19 +45,19 @@
       prefs:plantuml_hide_compounds
               "true" ;
       prefs:plantuml_hide_enumerations
-              "true" ;
+              "false" ;
       prefs:plantuml_hide_primitives
               "true" ;
       prefs:plantuml_nodesep_horizontal_spacing
-              "25" ;
+              "20" ;
       prefs:plantuml_primitives_color
               "#E6E6FF" ;
       prefs:plantuml_ranksep_vertical_spacing
-              "35" ;
+              "30" ;
       prefs:plantuml_refs_color
               "#FFDBDB" ;
       prefs:plantuml_set_anonymous_classes_color_to_white
-              "true" ;
+              "false" ;
       prefs:plantuml_shadow_classes_color
               "#C0C0C0" ;
       prefs:plantuml_theme

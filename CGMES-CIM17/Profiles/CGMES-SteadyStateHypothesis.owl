@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- 
 
-	Copyright 2025 UCAIug
+	Copyright 2026 UCAIug
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -1597,11 +1597,6 @@
     <rdfs:subClassOf rdf:nodeID="Xd2X7f7b6785Xa3X17a2f342306Xa3X-7ff7"/>
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#Equipment"/>
     <rdfs:subClassOf rdf:resource="#PowerSystemResource"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#EquipmentContainer">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#EquipmentContainer"/>
-    <rdfs:subClassOf rdf:resource="#EquipmentContainer"/>
   </rdf:Description>
   <rdf:Description rdf:about="#EquivalentEquipment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>

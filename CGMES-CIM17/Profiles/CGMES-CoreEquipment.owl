@@ -2519,7 +2519,6 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#european"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100-European#LimitKind"/>
@@ -5380,7 +5379,6 @@
   <rdf:Description rdf:about="#LimitKind">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#european"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100-European#LimitKind"/>
   </rdf:Description>
