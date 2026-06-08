@@ -1,0 +1,26 @@
+#
+# Network Codes 
+nc=http://entsoe.eu/ns/nc#
+adms=http://www.w3.org/ns/adms#
+euvoc=http://publications.europa.eu/ontology/euvoc#
+dc=http://purl.org/dc/elements/1.1/#
+dcat=http://www.w3.org/ns/dcat#
+dct=http://purl.org/dc/terms/#
+dm=http://iec.ch/TC57/61970-552/DifferenceModel/1#
+md=http://iec.ch/TC57/61970-552/ModelDescription/1#
+owl=http://www.w3.org/2002/07/owl#
+prof=http://www.w3.org/ns/dx/prof/#
+profcim=http://iec.ch/TC57/ns/CIM/prof-cim#
+prov=http://www.w3.org/ns/prov#
+rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdfs=http://www.w3.org/2000/01/rdf-schema#
+skos=http://www.w3.org/2004/02/skos/core#
+sh=http://www.w3.org/ns/shacl#
+xsd=http://www.w3.org/2001/XMLSchema#
+#
+# Euoprean metadata
+eumd=http://entsoe.eu/ns/Metadata-European#
+#
+# European
+eu=http://iec.ch/TC57/CIM100-European#
+entsoe=http://entsoe.eu/CIM/SchemaExtension/3/1#

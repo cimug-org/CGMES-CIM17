@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- 
 
-	Copyright 2025 UCAIug
+	Copyright 2026 UCAIug
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -639,6 +639,16 @@
     <rdfs:subClassOf rdf:nodeID="Xd2X4cb0de1Xa3X195fa9c34edXa3X-7b59"/>
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#Terminal"/>
     <rdfs:subClassOf rdf:resource="#ACDCTerminal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UnitMultiplier">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#UnitMultiplier"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UnitSymbol">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM100#UnitSymbol"/>
   </rdf:Description>
   <rdf:Description rdf:about="#VoltageLevel">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
