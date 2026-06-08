@@ -19,12 +19,6 @@ The CIM model is defined and maintained using UML. The source and point of maint
 
 > “The entire work provided in the UML project file is dedicated to the public domain.  As such, it is an Open Source document using an Apache 2.0 License.  This work can be obtained from the UCAIug Website using the link [https://cimug.ucaiug.org/](https://cimug.ucaiug.org/).
 
-## Latest Release
-
-#### CGMES CIM17:
-  -   The latest **CGMES CIM17 CIMTool Project** ZIP archive of the complete project is available at...[CGMES-CIM17-CIMTool-Project.zip](TBD). The specific Enterprise Architect (EA) project file used in CIMTool for this release is based on version iec61970cim17v40 of transmission CIM and is made available along with the project under the `...\Schema folder`
-  -   The latest **profiles-only** archive can be downloaded as a ZIP at [CGMES-CIM17-Profiles.zip](TBD).
-
 ## License
 
 Distributed under the Apache 2.0 license. See [LICENSE](LICENSE) for more information.
