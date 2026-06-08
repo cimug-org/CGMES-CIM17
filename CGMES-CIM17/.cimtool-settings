@@ -13,6 +13,8 @@ project:
               "true" ;
       tool:merged_schema_path
               "" ;
+      tool:plantuml_current_profile_preview_style
+              "puml-rdfs-t2b" ;
       tool:self_heal_on_import
               "true" .
 
