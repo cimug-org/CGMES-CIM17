@@ -12,9 +12,9 @@
 // From pragmatic testing PDF themes must be declared before the 
 // title in the document or else will not register correctly.
 :pdf-themesdir: {docdir}/Documentation/Themes
-:pdf-theme: sample-adoc
+:pdf-theme: cgmes-adoc
 :stylesdir: {docdir}/Documentation/Styles
-:stylesheet: sample-adoc.css
+:stylesheet: cgmes-adoc.css
 //
 //------ General document settings ------
 :doctype: book

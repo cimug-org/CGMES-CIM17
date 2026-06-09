@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- 
 
-	Copyright 2025 UCAIug
+	Copyright 2026 UCAIug
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -19,12 +19,27 @@
 -->
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:eumd="http://entsoe.eu/ns/Metadata-European#"
+    xmlns:nc="http://entsoe.eu/ns/nc#"
+    xmlns:msg="http://langdale.com.au/2005/Message#"
+    xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:uml="http://langdale.com.au/2005/UML#"
+    xmlns:dct="http://purl.org/dc/terms/#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:adms="http://www.w3.org/ns/adms#"
+    xmlns:euvoc="http://publications.europa.eu/ontology/euvoc#"
+    xmlns:dm="http://iec.ch/TC57/61970-552/DifferenceModel/1#"
+    xmlns:eu="http://iec.ch/TC57/CIM100-European#"
     xmlns="http://ucaiug.org/ns/CGMES/StateVariables-EU/3.0#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:msg="http://langdale.com.au/2005/Message#"
-    xmlns:uml="http://langdale.com.au/2005/UML#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:profcim="http://iec.ch/TC57/ns/CIM/prof-cim#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:sh="http://www.w3.org/ns/shacl#"
+    xmlns:dcat="http://www.w3.org/ns/dcat#"
+    xmlns:prof="http://www.w3.org/ns/dx/prof/#"
+    xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://ucaiug.org/ns/CGMES/StateVariables-EU/3.0" > 
   <rdf:Description rdf:nodeID="X33X483b752Xa3X18cdb970104Xa3X-7ff9">

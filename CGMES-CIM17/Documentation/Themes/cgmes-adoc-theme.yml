@@ -83,6 +83,11 @@ roles:
     font_size: 8
   red:
     font-color: #FF0000
+  extension:
+    font-style: italic
+  extension-prefix:
+    font-style: italic
+    font-color: #0078C9
   background-red:
     background-color: #FF0000
   background-orange:
