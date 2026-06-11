@@ -16,8 +16,8 @@
 # │   ├── Instances
 # │   ├── Profiles
 # │   └── Schema
-# │       ├── CDPSM-68968-13-ed2.qea   
-# │       └── CDPSM-68968-13-ed2.namespaces  (manually drop the file from within the CIMTool UI)
+# │       ├── CIM17-2_CGMES31v01_PROF-20v02_NC23v66_MS10v01_DES10v01.qea   
+# │       └── CIM17-2_CGMES31v01_PROF-20v02_NC23v66_MS10v01_DES10v01.namespaces 
 # ├── .asciidoctorconfig.adoc 
 # ├── .cimtool-settings        
 # ├── .copyright-multi-line  
@@ -30,8 +30,9 @@
 # for European/CGMES UML models where specific stereotypes are used
 # represent different namespaced extensions. In such cases (or if 
 # using this approach for your own extensions modeling) including
-# this simple file along with your model will require no changes 
-# made to your UML model.
+# this simple file along with your model will minimize or eliminate
+# the amount of preparatory work needed to be made to the UML model 
+# for it to be used within CIMTool.
 # 
 # If present, this file will override any baseuri tagged values 
 # that may have been specified on the model. Simply deleting this 
@@ -115,12 +116,7 @@
 # Therefore, when adding mappings care should be taken to account 
 # for the above considerations.
 #
-# CDPSM 
-CDPSM=http://edf.fr/CDPSM/2016/cdpsm2015#
-CDPSM2=http://iec.ch/TC57/CIM/CDPSM/SchemaExtension/2/0#
-Entsoe=http://entsoe.eu/CIM/SchemaExtension/3/1#
-#
-# Network Codes 
+# CGMES & Network Codes 
 adms=http://www.w3.org/ns/adms#
 European=http://iec.ch/TC57/CIM100-European#
 euvoc=http://publications.europa.eu/ontology/euvoc#
@@ -142,4 +138,5 @@ rdfs=http://www.w3.org/2000/01/rdf-schema#
 skos=http://www.w3.org/2004/02/skos/core#
 sh=http://www.w3.org/ns/shacl#
 xsd=http://www.w3.org/2001/XMLSchema#
+Informative=http://iec.ch/TC57/CIM100/Informative#
 

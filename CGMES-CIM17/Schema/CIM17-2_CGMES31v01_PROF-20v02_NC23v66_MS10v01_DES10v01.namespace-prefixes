@@ -1,5 +1,53 @@
 #
-# Network Codes 
+# This is a namespace prefixes to namespace mappings file. By 
+# convention a namespace mapping file must be named the same as the 
+# schema file used for the project under the ..\Schema directory but 
+# with the *.namespaces file extension. For example:
+#
+# C:\
+# ├── CDPSM-CIM17
+# │   ├── .settings 
+# │   ├── Documentation
+# │   │   ├── Images      
+# │   │   ├── Includes     
+# │   │   ├── Styles     
+# │   │   └── Themes     
+# │   ├── Incremental
+# │   ├── Instances
+# │   ├── Profiles
+# │   └── Schema
+# │       ├── CIM17-2_CGMES31v01_PROF-20v02_NC23v66_MS10v01_DES10v01.qea   
+# │       └── CIM17-2_CGMES31v01_PROF-20v02_NC23v66_MS10v01_DES10v01.namespace-prefixes
+# ├── .asciidoctorconfig.adoc 
+# ├── .cimtool-settings        
+# ├── .copyright-multi-line  
+# ├── .copyright-single-line  
+# ├── .project  
+# └── ...
+#
+# These mapping files are intended to be used with EA project files
+# such as .eap, .qea, and .feap files. They are optionally utilized  
+# by certain builders such as the AsciiDoc variants to map/assign
+# unique prefixes to the specific namespaces used by the model.
+# When mapped the AsciiDoc generated will prefix extensions in the
+# document with the corresponding prefix associated with the extension.
+# This helps communicate to end users which prefix an attribute, for
+# example, is defined in.
+#
+# Important notes on the <stereotype>=<namespace> mappings below:
+#
+# PREFIXES & NAMESPACES:
+# Both W3C namespaces and prefixes are case-sensitive. Both namespace 
+# prefixes and the namespace URIs themselves are compared character 
+# by character when determining if two names belong to the same 
+# namespace, according to the W3C's Namespaces in XML 1.1. This means 
+# that http://www.example.org/wine and http://www.Example.org/wine are  
+# treated as different namespaces. 
+#
+# Therefore, when adding mappings care should be taken to account 
+# for the above considerations.
+#
+# Network Codes prefixes
 nc=http://entsoe.eu/ns/nc#
 adms=http://www.w3.org/ns/adms#
 euvoc=http://publications.europa.eu/ontology/euvoc#
@@ -18,9 +66,11 @@ skos=http://www.w3.org/2004/02/skos/core#
 sh=http://www.w3.org/ns/shacl#
 xsd=http://www.w3.org/2001/XMLSchema#
 #
-# Euoprean metadata
+# European metadata prefix
 eumd=http://entsoe.eu/ns/Metadata-European#
 #
-# European
+# European extensions prefix
 eu=http://iec.ch/TC57/CIM100-European#
-entsoe=http://entsoe.eu/CIM/SchemaExtension/3/1#
+#
+# Informative packages prefixes
+ciminf=http://iec.ch/TC57/CIM100/Informative#

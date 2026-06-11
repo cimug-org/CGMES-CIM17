@@ -1,1 +1,1 @@
-Any modularized Asciidoc files to be "included" in the primary document should be located here.
+Any modularized Asciidoc files to be included in the primary document should be located here.
