@@ -25,6 +25,10 @@
 # ├── .project  
 # └── ...
 #
+# If this file exists in the same folder as the schema file when 
+# performing a schema import or creating a new CIMTool project,  
+# CIMTool will automatically import it at the same time. 
+# 
 # These mapping files are intended to be used with EA project files
 # such as .eap, .qea, and .feap files. They are optionally utilized  
 # by certain builders such as the AsciiDoc variants to map/assign
